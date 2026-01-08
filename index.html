@@ -898,7 +898,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">🔑 Желание</label>
+                    <label class="form-label">🔑 Пароль</label>
                     <input type="password" class="form-input" id="password" placeholder="Минимум 6 символов" required>
                     <div class="form-help info show">Минимум 6 символов</div>
                     <div class="form-help error" id="password-error"></div>
@@ -1291,7 +1291,7 @@ form.addEventListener('submit', async (e) => {
     
     // Валидация пароля
     if (!validatePassword(password)) {
-        showError('password', '❌ Желание должен содержать минимум 6 символов!');
+        showError('password', '❌ Пароль должен содержать минимум 6 символов!');
         document.getElementById('password').focus();
         return;
     }
