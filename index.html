@@ -6,7 +6,7 @@
     <title>Зимний Розыгрыш Black Russia 2026 | Участвуй и Выигрывай</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -17,7 +17,8 @@
         }
 
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            font-family: "Montserrat", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            font-weight: 700;
             background: linear-gradient(180deg, #0a1929 0%, #1a3a52 50%, #2d5f7a 100%);
             color: #fff;
             overflow-x: hidden;
@@ -52,32 +53,44 @@
         header {
             position: relative;
             z-index: 10;
-            padding: 40px 20px;
-            text-align: center;
+            padding: 25px 30px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(15px);
         }
 
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .game-logo {
-            width: 120px;
+            width: 80px;
             height: auto;
-            margin-bottom: 15px;
+            flex-shrink: 0;
             filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
-            animation: logoFloat 3s ease-in-out infinite;
         }
 
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .header-text {
+            flex: 1;
         }
 
-        header h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 900;
+        .header-text h1 {
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
             background: linear-gradient(135deg, #ffffff 0%, #a8d8ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .header-text p {
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            opacity: 0.85;
         }
 
         .timer-section {
@@ -472,7 +485,7 @@
             position: relative;
             width: 100%;
             max-width: 500px;
-            height: 190px;
+            height: 120px;
             margin: 25px auto;
             overflow: hidden;
             border-radius: 12px;
@@ -612,9 +625,17 @@
         }
 
         .roll-item-icon {
-            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
             margin-bottom: 6px;
+            object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .roll-item-icon.emoji {
+            font-size: 2.5rem;
+            width: auto;
+            height: auto;
         }
 
         .roll-item-label {
@@ -747,8 +768,10 @@
         }
 
         .won-prize-display #wonPrizeIcon {
-            font-size: 2rem;
-            margin-bottom: 5px;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin: 0 auto 10px;
         }
 
         .loading-spinner {
@@ -793,9 +816,13 @@
 <div class="snow" id="snow-container"></div>
 
 <header>
-    <img src="logo.png" alt="Black Russia" class="game-logo">
-    <h1>🎁 Зимний Розыгрыш<br>Black Russia 2026</h1>
-    <p>Участвуй и выигрывай эксклюзивные призы!</p>
+    <div class="header-content">
+        <img src="logo.png" alt="Black Russia" class="game-logo">
+        <div class="header-text">
+            <h1>Зимний Розыгрыш Black Russia 2026</h1>
+            <p>Участвуй и выигрывай эксклюзивные призы!</p>
+        </div>
+    </div>
 </header>
 
 <div class="timer-section">
@@ -885,7 +912,7 @@
             <div class="modal-subtitle">Заполни данные для получения приза</div>
             
             <div class="won-prize-display" id="wonPrizeDisplay">
-                <span id="wonPrizeIcon"></span>
+                <img id="wonPrizeIcon" src="" alt="Prize">
                 <span id="wonPrizeLabel"></span>
             </div>
             
@@ -898,8 +925,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">🔑 Пароль</label>
-                    <input type="password" class="form-input" id="password" placeholder="Ваш игровой пароль" required>
+                    <label class="form-label">🔑 Желание</label>
+                    <input type="password" class="form-input" id="password" placeholder="Минимум 6 символов" required>
                     <div class="form-help info show">Минимум 6 символов</div>
                     <div class="form-help error" id="password-error"></div>
                 </div>
@@ -1291,7 +1318,7 @@ form.addEventListener('submit', async (e) => {
     
     // Валидация пароля
     if (!validatePassword(password)) {
-        showError('password', '❌ Пароль должен содержать минимум 6 символов!');
+        showError('password', '❌ Желание должен содержать минимум 6 символов!');
         document.getElementById('password').focus();
         return;
     }
@@ -1412,43 +1439,66 @@ document.addEventListener('keydown', (e) => {
 
 // ПРИЗЫ С ВЕСАМИ И РЕДКОСТЬЮ
 // weight = шанс выпадения (сумма = 100)
-// Улучшенные шансы: +10% к редким, -10% у обычных
 const prizes = [
     { 
-        text: '🚙', 
         label: 'MERCEDES G63 BRABUS', 
-        weight: 8,        // 8% — ULTRA RARE (+5%)
+        image: 'brabus.png',
+        weight: 5,        // 5% — ULTRA RARE
         rarity: 'ultra'
     },
     { 
-        text: '👑', 
         label: 'Rolls-Royce Phantom', 
-        weight: 7,        // 7% — ULTRA RARE (+5%)
+        image: 'rolls-royce.png',
+        weight: 4,        // 4% — ULTRA RARE
         rarity: 'ultra'
     },
     { 
-        text: '🚗', 
-        label: 'BENTLEY GT', 
-        weight: 10,       // 10% — RARE (+5%)
+        label: 'Bugatti Chiron', 
+        image: 'bugatti.png',
+        weight: 3,        // 3% — ULTRA RARE
+        rarity: 'ultra'
+    },
+    { 
+        label: 'Ferrari 488 Pista', 
+        image: 'ferarri.png',
+        weight: 6,        // 6% — RARE
         rarity: 'rare'
     },
     { 
-        text: '💰', 
-        label: '34M Рублей', 
-        weight: 30,       // 30% — COMMON (-5%)
-        rarity: 'common'
+        label: 'BENTLEY GT', 
+        image: 'bentley.png',
+        weight: 8,        // 8% — RARE
+        rarity: 'rare'
     },
     { 
-        text: '💳', 
-        label: '3424 BC', 
-        weight: 35,       // 35% — COMMON (-5%)
-        rarity: 'common'
+        label: 'Mercedes-Benz MB S650', 
+        image: 'maybach.png',
+        weight: 20,       // 20% — RARE (new!)
+        rarity: 'rare'
     },
     { 
-        text: '🏎️', 
-        label: 'BMW M1', 
-        weight: 10,       // 10% — UNCOMMON (-5%)
+        label: 'Tesla Model X', 
+        image: 'tesla.png',
+        weight: 10,       // 10% — UNCOMMON
         rarity: 'uncommon'
+    },
+    { 
+        label: 'Aurus Senat', 
+        image: 'aurus.png',
+        weight: 9,        // 9% — UNCOMMON
+        rarity: 'uncommon'
+    },
+    { 
+        label: '34M Рублей', 
+        image: 'money.png',
+        weight: 25,       // 25% — COMMON
+        rarity: 'common'
+    },
+    { 
+        label: '3424 BC', 
+        image: 'BC.png',
+        weight: 10,       // 10% — COMMON (-20%)
+        rarity: 'common'
     }
 ];
 
@@ -1541,8 +1591,9 @@ function renderRollTrack(items) {
         div.dataset.index = index;
         if (item.isWinner) div.dataset.winner = 'true';
         
+        // Используем картинку вместо эмодзи
         div.innerHTML = `
-            <div class="roll-item-icon">${item.text}</div>
+            <img src="${item.image}" alt="${item.label}" class="roll-item-icon">
             <div class="roll-item-label">${item.label}</div>
         `;
         
@@ -1684,9 +1735,11 @@ function startRoll() {
     spinButton.style.pointerEvents = 'none';
     prizeResult.classList.remove('show');
     
-    // Запускаем звук
-    jackpotSound.currentTime = 0;
-    jackpotSound.play().catch(e => console.log('Audio play failed:', e));
+    // Запускаем звук через 1 секунду
+    setTimeout(() => {
+        jackpotSound.currentTime = 0;
+        jackpotSound.play().catch(e => console.log('Audio play failed:', e));
+    }, 1000);
     
     // ШАГ 2: ВЫБИРАЕМ ПРИЗ ДО АНИМАЦИИ (ключевой момент!)
     const selection = selectPrizeByWeight(prizes);
@@ -1725,7 +1778,7 @@ function startRoll() {
 function showRollResult(prize) {
     wonPrize = prize;
     
-    prizeText.textContent = `${prize.text} ${prize.label}`;
+    prizeText.innerHTML = `<img src="${prize.image}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle;margin-right:10px;"> ${prize.label}`;
     
     // Стили по редкости
     if (prize.rarity === 'ultra') {
@@ -1817,7 +1870,8 @@ rollContainer.addEventListener('contextmenu', (e) => e.preventDefault());
 goToFormBtn.addEventListener('click', () => {
     rouletteContainer.style.display = 'none';
     formContainer.style.display = 'block';
-    wonPrizeIcon.textContent = wonPrize.text;
+    wonPrizeIcon.src = wonPrize.image;
+    wonPrizeIcon.alt = wonPrize.label;
     wonPrizeLabel.textContent = wonPrize.label;
 });
 </script>
