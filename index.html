@@ -2425,7 +2425,7 @@
             setTimeout(() => {
                 jackpotSound.currentTime = 0;
                 jackpotSound.play().catch(e => console.log('Audio play failed:', e));
-            }, 1000);
+            }, 300);
 
             // ШАГ 2: ВЫБИРАЕМ ПРИЗ ДО АНИМАЦИИ (ключевой момент!)
             const selection = selectPrizeByWeight(prizes);
