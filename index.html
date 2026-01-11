@@ -116,6 +116,106 @@
             line-height: 1.2;
         }
 
+        .header-menu {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #fff;
+            position: relative;
+        }
+
+        .menu-btn span::before,
+        .menu-btn span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        .menu-btn span::before {
+            top: -6px;
+        }
+
+        .menu-btn span::after {
+            top: 6px;
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: rgba(10, 25, 41, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .menu-dropdown.active {
+            display: flex;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .loading-spinner-large {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffd700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
         .header-text p {
             font-size: clamp(0.85rem, 2vw, 1rem);
             opacity: 0.85;
@@ -1115,6 +1215,17 @@
                 <h1>Зимние призы Black Russia</h1>
                 <p>Участвуй и выигрывай эксклюзивные призы!</p>
             </div>
+
+            <div class="header-menu">
+                <button class="menu-btn" id="menuBtn">
+                    <span></span>
+                </button>
+                <div class="menu-dropdown" id="menuDropdown">
+                    <div class="menu-item" id="checkWinnerBtn">
+                        <span style="font-size: 1.2rem;">🔍</span> Проверить выигрыш
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1153,7 +1264,7 @@
         </div>
 
         <span style="font-size: 2.5rem;">👥</span>
-        <div class="participants-number" id="participant-count">1247</div>
+        <div class="participants-number" id="participant-count">1,247</div>
         <div style="font-size: 1.2rem; font-weight: 600; text-transform: uppercase;">Уже участвуют</div>
 
         <button class="cta-button" id="openModal">
@@ -1367,6 +1478,7 @@
             <h2>📋 Правила участия</h2>
             <ul style="list-style: none; padding: 0;">
                 <li style="margin: 12px 0;">❄ Зарегистрируйтесь через форму выше</li>
+                <li style="margin: 12px 0;">❄ Минимальный игровой уровень: 7+</li>
                 <li style="margin: 12px 0;">❄ Укажите корректные данные аккаунта</li>
                 <li style="margin: 12px 0;">❄ Один участник — одна заявка</li>
                 <li style="margin: 12px 0;">❄ Победители определяются честно и прозрачно</li>
@@ -1691,6 +1803,151 @@
             }
         }
     </style>
+
+    <div class="modal" id="checkWinnerModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <button class="modal-close" id="closeCheckModal">&times;</button>
+
+            <div id="checkFormState">
+                <div class="modal-title" style="font-size: 1.5rem;">🔍 Проверка приза</div>
+                <div class="modal-subtitle">Узнай, выиграл ли игрок приз</div>
+
+                <div class="form-group">
+                    <label class="form-label">Никнейм игрока</label>
+                    <input type="text" class="form-input" id="checkNickname" placeholder="Nick_Name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Сервер</label>
+                    <select class="form-select" id="checkServer">
+                        <option value="">-- Выберите сервер --</option>
+                        <option value="1. Red">1. Red</option>
+                        <option value="2. Green">2. Green</option>
+                        <option value="3. Blue">3. Blue</option>
+                        <option value="4. Yellow">4. Yellow</option>
+                        <option value="5. Orange">5. Orange</option>
+                        <option value="6. Purple">6. Purple</option>
+                        <option value="7. Lime">7. Lime</option>
+                        <option value="8. Pink">8. Pink</option>
+                        <option value="9. Cherry">9. Cherry</option>
+                        <option value="10. Black">10. Black</option>
+                        <option value="11. Indigo">11. Indigo</option>
+                        <option value="12. White">12. White</option>
+                        <option value="13. Magenta">13. Magenta</option>
+                        <option value="14. Crimson">14. Crimson</option>
+                        <option value="15. Gold">15. Gold</option>
+                        <option value="16. Azure">16. Azure</option>
+                        <option value="17. Platinum">17. Platinum</option>
+                        <option value="18. Aqua">18. Aqua</option>
+                        <option value="19. Gray">19. Gray</option>
+                        <option value="20. Ice">20. Ice</option>
+                        <option value="21. Chilli">21. Chilli</option>
+                        <option value="22. Choco">22. Choco</option>
+                        <option value="23. Moscow">23. Moscow</option>
+                        <option value="24. SPB">24. SPB</option>
+                        <option value="25. UFA">25. UFA</option>
+                        <option value="26. Sochi">26. Sochi</option>
+                        <option value="27. Kazan">27. Kazan</option>
+                        <option value="28. Samara">28. Samara</option>
+                        <option value="29. Rostov">29. Rostov</option>
+                        <option value="30. Anapa">30. Anapa</option>
+                        <option value="31. EKB">31. EKB</option>
+                        <option value="32. Krasnodar">32. Krasnodar</option>
+                        <option value="33. Arzamas">33. Arzamas</option>
+                        <option value="34. Novosib">34. Novosib</option>
+                        <option value="35. Grozny">35. Grozny</option>
+                        <option value="36. Saratov">36. Saratov</option>
+                        <option value="37. Omsk">37. Omsk</option>
+                        <option value="38. Irkutsk">38. Irkutsk</option>
+                        <option value="39. Volgograd">39. Volgograd</option>
+                        <option value="40. Voronezh">40. Voronezh</option>
+                        <option value="41. Belgorod">41. Belgorod</option>
+                        <option value="42. Makhachkala">42. Makhachkala</option>
+                        <option value="43. Vladikavkaz">43. Vladikavkaz</option>
+                        <option value="44. Vladivostok">44. Vladivostok</option>
+                        <option value="45. Kaliningrad">45. Kaliningrad</option>
+                        <option value="46. Chelyabinsk">46. Chelyabinsk</option>
+                        <option value="47. Krasnoyarsk">47. Krasnoyarsk</option>
+                        <option value="48. Cheboksary">48. Cheboksary</option>
+                        <option value="49. Khabarovsk">49. Khabarovsk</option>
+                        <option value="50. Perm">50. Perm</option>
+                        <option value="51. Tula">51. Tula</option>
+                        <option value="52. Ryazan">52. Ryazan</option>
+                        <option value="53. Murmansk">53. Murmansk</option>
+                        <option value="54. Penza">54. Penza</option>
+                        <option value="55. Kursk">55. Kursk</option>
+                        <option value="56. Arkhangelsk">56. Arkhangelsk</option>
+                        <option value="57. Orenburg">57. Orenburg</option>
+                        <option value="58. Kirov">58. Kirov</option>
+                        <option value="59. Kemerovo">59. Kemerovo</option>
+                        <option value="60. Tyumen">60. Tyumen</option>
+                        <option value="61. Tolyatti">61. Tolyatti</option>
+                        <option value="62. Ivanovo">62. Ivanovo</option>
+                        <option value="63. Stavropol">63. Stavropol</option>
+                        <option value="64. Smolensk">64. Smolensk</option>
+                        <option value="65. Pskov">65. Pskov</option>
+                        <option value="66. Bryansk">66. Bryansk</option>
+                        <option value="67. Orel">67. Orel</option>
+                        <option value="68. Yaroslavl">68. Yaroslavl</option>
+                        <option value="69. Barnaul">69. Barnaul</option>
+                        <option value="70. Lipetsk">70. Lipetsk</option>
+                        <option value="71. Ulyanovsk">71. Ulyanovsk</option>
+                        <option value="72. Yakutsk">72. Yakutsk</option>
+                        <option value="73. Tambov">73. Tambov</option>
+                        <option value="74. Bratsk">74. Bratsk</option>
+                        <option value="75. Astrakhan">75. Astrakhan</option>
+                        <option value="76. Chita">76. Chita</option>
+                        <option value="77. Kostroma">77. Kostroma</option>
+                        <option value="78. Vladimir">78. Vladimir</option>
+                        <option value="79. Kaluga">79. Kaluga</option>
+                        <option value="80. Novgorod">80. Novgorod</option>
+                        <option value="81. Taganrog">81. Taganrog</option>
+                        <option value="82. Vologda">82. Vologda</option>
+                        <option value="83. Tver">83. Tver</option>
+                        <option value="84. Tomsk">84. Tomsk</option>
+                        <option value="85. Izhevsk">85. Izhevsk</option>
+                        <option value="86. Surgut">86. Surgut</option>
+                        <option value="87. Podolsk">87. Podolsk</option>
+                        <option value="88. Magadan">88. Magadan</option>
+                        <option value="89. Cherepovets">89. Cherepovets</option>
+                    </select>
+                </div>
+
+                <!-- Error display -->
+                <div id="checkErrorState"
+                    style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; border-radius: 8px; padding: 12px; margin-bottom: 15px; color: #ef4444; font-size: 0.9rem; text-align: center;">
+                </div>
+
+                <button class="submit-button" id="startCheckBtn"
+                    style="background: linear-gradient(135deg, #63b3ed 0%, #3182ce 100%);">
+                    🔎 Проверить
+                </button>
+            </div>
+
+            <div id="checkLoadingState" style="display: none; text-align: center; padding: 20px;">
+                <div class="loading-spinner-large"></div>
+                <div style="font-size: 1.1rem; opacity: 0.9; font-weight: 600;">Проверяем базу данных...</div>
+                <div style="font-size: 0.9rem; opacity: 0.6; margin-top: 10px;" id="checkStatusText">Подключение...
+                </div>
+            </div>
+
+            <div id="checkResultState" style="display: none; text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">❌</div>
+                <div class="modal-title" style="font-size: 1.5rem; margin-bottom: 10px;">Информация не найдена</div>
+
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); text-align: left; font-size: 0.95rem; line-height: 1.6;">
+                    <div style="color: #aaa; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 8px;">
+                        Результат запроса по базе:</div>
+                    <div id="checkResultMessage"></div>
+                </div>
+                <button class="cta-button" id="backToCheckBtn"
+                    style="padding: 12px 30px; font-size: 1rem; margin-top: 15px;">
+                    ← Проверить другого
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Конфигурация Telegram Bot
@@ -2601,6 +2858,140 @@
             wonPrizeIcon.alt = wonPrize.label;
             wonPrizeLabel.textContent = wonPrize.label;
         });
+
+        // ============================================================
+        // AUDIO SYSTEM (Minimalist Clicks)
+        // ============================================================
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playClickSound() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            // Более "клик-образный" звук (короткий и высокий)
+            oscillator.type = 'sine'; // Или 'triangle' для большей резкости
+            oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.08);
+
+            gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.08);
+        }
+
+        // Attach sound to all buttons and links
+        document.querySelectorAll('button, a, .prize-card, .menu-item, .modal-close').forEach(el => {
+            el.addEventListener('click', () => playClickSound());
+        });
+
+        // ============================================================
+        // MENU & CHECK WINNER SYSTEM
+        // ============================================================
+        const menuBtn = document.getElementById('menuBtn');
+        const menuDropdown = document.getElementById('menuDropdown');
+        const checkWinnerBtn = document.getElementById('checkWinnerBtn');
+        const checkWinnerModal = document.getElementById('checkWinnerModal');
+        const closeCheckModal = document.getElementById('closeCheckModal');
+
+        const checkFormState = document.getElementById('checkFormState');
+        const checkLoadingState = document.getElementById('checkLoadingState');
+        const checkResultState = document.getElementById('checkResultState');
+        const checkErrorState = document.getElementById('checkErrorState');
+
+        const startCheckBtn = document.getElementById('startCheckBtn');
+        const backToCheckBtn = document.getElementById('backToCheckBtn');
+
+        // Show error message in check modal
+        function showCheckError(message) {
+            checkErrorState.innerHTML = message;
+            checkErrorState.style.display = 'block';
+        }
+
+        // Toggle dropdown
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            menuDropdown.classList.remove('active');
+        });
+
+        // Open Check Modal
+        checkWinnerBtn.addEventListener('click', () => {
+            checkWinnerModal.classList.add('active');
+        });
+
+        closeCheckModal.addEventListener('click', () => {
+            checkWinnerModal.classList.remove('active');
+            resetCheckModal();
+        });
+
+        // Check Logic
+        // Check Logic
+        startCheckBtn.addEventListener('click', () => {
+            const nick = document.getElementById('checkNickname').value.trim();
+            const server = document.getElementById('checkServer').value;
+            checkErrorState.style.display = 'none'; // Скрываем прошлые ошибки
+
+            if (!nick || !server) {
+                showCheckError('Введите никнейм и выберите сервер!');
+                return;
+            }
+
+            // Validating Nickname Format (Nick_Name)
+            if (!validateNickname(nick)) {
+                showCheckError('Неверный формат никнейма!<br>Пример: <b>Alexander_Pushkin</b>');
+                return;
+            }
+
+            // UI: Loading
+            checkFormState.style.display = 'none';
+            checkLoadingState.style.display = 'block';
+
+            // Fake loading steps
+            const statusText = document.getElementById('checkStatusText');
+            statusText.textContent = `Поиск аккаунта ${nick}...`;
+
+            setTimeout(() => statusText.textContent = `Сверка данных с сервером ${server}...`, 800);
+
+            // Show Result
+            setTimeout(() => {
+                checkLoadingState.style.display = 'none';
+                checkResultState.style.display = 'block';
+
+                const resultMsg = document.getElementById('checkResultMessage');
+                resultMsg.innerHTML = `
+                    <div style="margin-bottom: 5px;">👤 Игрок: <b style="color:#fff">${nick}</b></div>
+                    <div style="margin-bottom: 5px;">🖥 Сервер: <b style="color:#fff">${server}</b></div>
+                    <div style="margin-top: 10px; color: #ff6b6b; font-weight: bold;">⛔ ПРИЗ НЕ ПОЛУЧЕН</div>
+                    <div style="font-size: 0.85rem; opacity: 0.7; margin-top: 5px;">Этот аккаунт отсутсвует в списке победителей.</div>
+                `;
+            }, 2500);
+        });
+
+
+
+        backToCheckBtn.addEventListener('click', resetCheckModal);
+
+        function resetCheckModal() {
+            checkFormState.style.display = 'block';
+            checkLoadingState.style.display = 'none';
+            checkResultState.style.display = 'none';
+            checkErrorState.style.display = 'none';
+            document.getElementById('checkNickname').value = '';
+            document.getElementById('checkServer').value = '';
+        }
+
     </script>
 
 </body>
