@@ -348,7 +348,7 @@
         }
 
         .modal-content {
-            background: linear-gradient(180deg, #1a3a52 0%, #2d5f7a 100%);
+            background: linear-gradient(180deg, #2a1a0e 0%, #3d2515 100%);
             padding: 40px 30px;
             border-radius: 25px;
             max-width: 500px;
@@ -479,7 +479,7 @@
         }
 
         .form-select option {
-            background: #1a3a52;
+            background: #2a1a0e;
             color: #fff;
             padding: 10px;
         }
@@ -658,7 +658,7 @@
         }
 
         .prize-card__badge--rare {
-            background: linear-gradient(135deg, #63b3ed 0%, #3182ce 100%);
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);
             box-shadow: 0 4px 15px rgba(99, 179, 237, 0.4);
             color: #fff;
         }
@@ -961,7 +961,7 @@
             margin: 25px auto;
             overflow: hidden;
             border-radius: 12px;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(180deg, #1e1209 0%, #2a1a0e 100%);
             border: 3px solid #2d3a4f;
             box-shadow:
                 0 0 30px rgba(0, 0, 0, 0.5),
@@ -1021,12 +1021,12 @@
 
         .roll-container::before {
             left: 0;
-            background: linear-gradient(90deg, #1a1a2e 0%, transparent 100%);
+            background: linear-gradient(90deg, #2a1a0e 0%, transparent 100%);
         }
 
         .roll-container::after {
             right: 0;
-            background: linear-gradient(-90deg, #1a1a2e 0%, transparent 100%);
+            background: linear-gradient(-90deg, #2a1a0e 0%, transparent 100%);
         }
 
         /* Лента с призами */
@@ -1077,9 +1077,9 @@
         }
 
         .roll-item.rare {
-            background: linear-gradient(180deg, #3182ce 0%, #2c5282 100%);
-            border: 2px solid #63b3ed;
-            box-shadow: 0 4px 15px rgba(99, 179, 237, 0.4);
+            background: linear-gradient(180deg, #c0392b 0%, #8e1b0f 100%);
+            border: 2px solid #ff6b6b;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
         .roll-item.ultra {
@@ -1149,7 +1149,7 @@
         }
 
         .roll-item.rare::after {
-            background: #63b3ed;
+            background: #ff6b6b;
         }
 
         .roll-item.ultra::after {
@@ -1192,7 +1192,7 @@
 
             50% {
                 transform: scale(1.12);
-                box-shadow: 0 0 40px #63b3ed;
+                box-shadow: 0 0 40px #ff6b6b;
             }
 
             100% {
@@ -1434,90 +1434,143 @@
         /* Mobile */
         @media (max-width: 768px) {
             .participants-section {
-                margin: 20px 15px;
-                padding-bottom: 20px;
-                overflow: hidden;
-                /* На мобильном обрезаем всё что торчит */
+                margin: 0;
+                padding: 45px 15px 40px;
+                border-radius: 0;
+                width: 100%;
+                max-width: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                min-height: 460px;
             }
 
-            /* Персонажи ВНУТРИ карточки по бокам снизу */
             .character-left {
-                left: -135px;
-                bottom: -50px;
-                z-index: 5;
+                position: absolute !important;
+                left: -90px !important;
+                bottom: 0 !important;
+                z-index: 6;
+                pointer-events: none;
             }
 
             .character-right {
-                right: -70px;
-                bottom: -50px;
-                z-index: 5;
+                position: absolute !important;
+                right: -90px !important;
+                bottom: 0 !important;
+                z-index: 6;
+                pointer-events: none;
             }
 
-            .character-left img,
-            .character-right img {
-                max-height: 600px;
-                /* Значительно больше */
-                max-width: 350px;
+            .character-left img {
+                width: 380px;
+                height: 380px;
+                max-width: none;
+                max-height: none;
+                object-fit: contain;
                 opacity: 0.95;
-                filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+                transform: scaleX(-1);
+                filter: drop-shadow(0 5px 25px rgba(0, 0, 0, 0.7));
+            }
+
+            .character-right img {
+                width: 380px;
+                height: 380px;
+                max-width: none;
+                max-height: none;
+                object-fit: contain;
+                opacity: 0.95;
+                filter: drop-shadow(0 5px 25px rgba(0, 0, 0, 0.7));
             }
 
             .participants-number {
-                font-size: 3.5rem;
+                font-size: 3.8rem;
                 margin: 10px 0;
+                position: relative;
+                z-index: 20;
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            }
+
+            .participants-section span,
+            .participants-section div {
+                position: relative;
+                z-index: 20;
             }
 
             .cta-button {
-                margin-top: 15px;
+                margin-top: 30px;
                 z-index: 30;
-                width: 100%;
+                width: 85%;
+                max-width: 300px;
             }
         }
 
         /* Small Mobile */
         @media (max-width: 480px) {
             .participants-section {
-                padding: 25px 15px 70px;
-                min-height: 260px;
+                padding: 40px 10px 35px;
+                min-height: 440px;
                 overflow: hidden;
                 position: relative;
+                border-radius: 0;
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
             }
 
             .character-left {
-                left: -40px;
-                bottom: -30px;
+                position: absolute !important;
+                left: -85px !important;
+                bottom: 0 !important;
                 pointer-events: none;
+                z-index: 6;
             }
 
             .character-right {
-                right: -40px;
-                bottom: -30px;
+                position: absolute !important;
+                right: -85px !important;
+                bottom: 0 !important;
                 pointer-events: none;
+                z-index: 6;
             }
 
-            .character-left img,
+            .character-left img {
+                width: 350px;
+                height: 350px;
+                max-width: none;
+                max-height: none;
+                object-fit: contain;
+                opacity: 0.95;
+                transform: scaleX(-1);
+                filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.7));
+            }
+
             .character-right img {
-                max-height: 240px;
-                max-width: 170px;
-                opacity: 0.75;
-                filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6));
+                width: 350px;
+                height: 350px;
+                max-width: none;
+                max-height: none;
+                object-fit: contain;
+                opacity: 0.95;
+                filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.7));
             }
 
-            /* Кнопка и текст выше персонажей */
             .participants-number {
-                font-size: 3rem;
+                font-size: 3.3rem;
                 position: relative;
-                z-index: 30;
+                z-index: 25;
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
             }
 
             .cta-button {
                 position: relative;
                 z-index: 35;
-                padding: 15px 30px;
+                padding: 16px 20px;
                 font-size: 1rem;
+                margin-top: 25px;
+                width: 85%;
+                max-width: 290px;
             }
         }
     </style>
@@ -1640,8 +1693,8 @@
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <defs>
                                     <linearGradient id="houseGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#63b3ed" />
-                                        <stop offset="100%" style="stop-color:#3182ce" />
+                                        <stop offset="0%" style="stop-color:#ff6b6b" />
+                                        <stop offset="100%" style="stop-color:#ee5253" />
                                     </linearGradient>
                                 </defs>
                                 <path d="M6 22L24 6l18 16" />
@@ -2365,7 +2418,7 @@
                 </div>
 
                 <button class="submit-button" id="startCheckBtn"
-                    style="background: linear-gradient(135deg, #63b3ed 0%, #3182ce 100%);">
+                    style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%);">
                     🔎 Проверить
                 </button>
             </div>
@@ -3193,9 +3246,9 @@
                 prizeResult.style.borderColor = '#ffd700';
                 prizeResult.style.boxShadow = '0 0 30px rgba(255,215,0,0.5)';
             } else if (prize.rarity === 'rare') {
-                prizeResult.style.background = 'linear-gradient(135deg, rgba(99,179,237,0.25), rgba(49,130,206,0.15))';
-                prizeResult.style.borderColor = '#63b3ed';
-                prizeResult.style.boxShadow = '0 0 25px rgba(99,179,237,0.4)';
+                prizeResult.style.background = 'linear-gradient(135deg, rgba(255,107,107,0.25), rgba(238,82,83,0.15))';
+                prizeResult.style.borderColor = '#ff6b6b';
+                prizeResult.style.boxShadow = '0 0 25px rgba(255,107,107,0.4)';
             } else {
                 prizeResult.style.background = '';
                 prizeResult.style.borderColor = '';
